@@ -43,7 +43,6 @@ const highlights = [
       />
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <!-- Texto descritivo em primeira pessoa com alto contraste -->
         <div class="lg:col-span-7 space-y-6 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 font-normal leading-relaxed">
           <p
             v-for="(paragraph, index) in content.personalInfo.aboutParagraphs"
@@ -69,7 +68,6 @@ const highlights = [
           </div>
         </div>
 
-        <!-- Cards com textura de vidro fosco (Frosted Glass) -->
         <div class="lg:col-span-5 grid grid-cols-1 gap-4">
           <div
             v-for="item in highlights"

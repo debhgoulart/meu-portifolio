@@ -21,14 +21,12 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
     class="relative min-h-[96vh] flex flex-col justify-center pt-28 sm:pt-36 pb-20 px-6 sm:px-10 lg:px-12"
   >
     <div class="relative z-10 max-w-5xl mx-auto w-full">
-      <!-- Indicador de localização minimalista (sem pill de disponibilidade) -->
       <div class="flex items-center gap-2 mb-8 text-xs font-mono tracking-wider text-zinc-600 dark:text-zinc-400">
         <span>Rio de Janeiro, BR</span>
         <span class="text-zinc-400 dark:text-zinc-600">•</span>
         <span>{{ content.personalInfo.coordinates }}</span>
       </div>
 
-      <!-- Título de Impacto Minimalista e Editorial -->
       <div class="space-y-4 mb-8">
         <h1
           class="text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-zinc-950 dark:text-white leading-[1.05]"
@@ -51,14 +49,12 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
         </p>
       </div>
 
-      <!-- Breve biografia limpa -->
       <div class="max-w-2xl mb-10">
         <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
           {{ content.personalInfo.shortBio }}
         </p>
       </div>
 
-      <!-- Ações com botões menos arredondados (estilo mais quadrado / rounded-lg) -->
       <div class="flex flex-wrap items-center gap-3.5 text-xs font-mono">
         <a
           href="#projetos"

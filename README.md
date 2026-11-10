@@ -1,110 +1,93 @@
 # Portfólio Pessoal — Deborah Goulart
 
-Portfólio moderno, minimalista e de alta fidelidade visual desenvolvido para **Deborah Goulart**, Desenvolvedora Full Stack com ênfase em arquitetura backend, ecossistema Java/Spring Boot e interfaces com Vue.js 3.
+Bem-vindo(a) ao repositório do meu portfólio pessoal! Desenvolvi esta aplicação para apresentar minha trajetória profissional, formação acadêmica, projetos e competências técnicas como Desenvolvedora Full Stack.
 
-Inspirado em interfaces de produtos de tecnologia de ponta (Linear, Vercel, Google Antigravity), o projeto conta com um background orgânico renderizado em tempo real via **WebGL com a biblioteca NEAT (`@firecms/neat`)**, com resposta fluida à movimentação do mouse e adaptação dinâmica entre tema claro e escuro.
-
----
-
-## 🚀 Tecnologias
-
-- **Vue.js 3** (Composition API + `<script setup>`)
-- **TypeScript** (tipagem estrita sem erros)
-- **Vite 6** (build ultrarrápido)
-- **Tailwind CSS v4** (estilização utilitária e minimalista)
-- **@firecms/neat** (gradiente 3D procedural dinâmico em WebGL)
-- **Lucide Vue Next** (ícones consistentes e elegantes)
-- **@vueuse/core** (utilitários reativos)
+A interface foi projetada com foco em experiência visual moderna, minimalista e responsiva, contando com background procedural interativo em WebGL, alternância fluida entre tema claro e escuro, e suporte a múltiplos idiomas (Português e Inglês).
 
 ---
 
-## 🎨 Identidade Visual & Design
+## 🛠️ Tecnologias Utilizadas
 
-- **Estilo:** Minimalista, limpo e profissional com tipografia expressiva (*Plus Jakarta Sans*).
-- **Paleta de Destaque:** Tons de roxo / lavanda / violeta.
-  - **Modo Claro:** Fundo off-white (`#fbfaff`), superfícies delicadas e gradientes suaves em tons pastel de lavanda e lilás.
-  - **Modo Escuro:** Fundo em grafite profundo com subtom violeta (`#090712`), contrastes nítidos e brilhos roxos intensos.
-- **Background Interativo NEAT:**
-  - Deformação orgânica e física fluida com interpolação suave (lerp) baseada na movimentação do mouse.
-  - Animação ambiente contínua quando o ponteiro estiver parado ou em telas sensíveis ao toque (smartphones/tablets).
-  - Respeita acessibilidade e `prefers-reduced-motion`.
-  - Fallback visual em CSS para dispositivos sem suporte a WebGL.
+- **Frontend:** [Vue.js 3](https://vuejs.org/) (Composition API, `<script setup>`)
+- **Linguagem:** [TypeScript](https://www.typescriptlang.org/) (tipagem estrita)
+- **Estilização:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Background Interativo:** [@firecms/neat](https://github.com/FireCMSco/neat) (gradientes procedural WebGL responsivos ao movimento do mouse)
+- **Ícones:** [Lucide Vue Next](https://lucide.dev/)
+- **Hospedagem & Deploy:** [Vercel](https://vercel.com/)
 
 ---
 
-## 📁 Estrutura do Projeto
+## ✨ Funcionalidades
+
+- **Background WebGL Interativo:** Efeito de onda e deformação física que responde à movimentação do cursor e do toque, com modo ambiente contínuo e tratamento de acessibilidade (`prefers-reduced-motion`).
+- **Tema Claro & Escuro (Dark/Light Mode):** Alternância instantânea com transições suaves e persistência da preferência no `localStorage`.
+- **Internacionalização (PT / EN):** Seletor de idioma integrado para alternar todo o conteúdo dinamicamente entre português e inglês.
+- **Scroll Spy com Navegação Suave:** Indicação em tempo real da seção visualizada diretamente na barra de navegação.
+- **Visualização de Projetos:** Alternância entre visualização detalhada em cards editoriais (*Project View*) e listagem tabular compacta (*Index View*), com filtros por categoria (Full Stack, Backend, Frontend).
+- **Cópia Rápida de Contato:** Botão interativo para copiar e-mail diretamente para a área de transferência com feedback visual.
+
+---
+
+## 📁 Estrutura de Diretórios
 
 ```
 src/
-├── assets/                  # Favicon e vetores estáticos
+├── assets/          # Favicon e imagens estáticas
 ├── components/
-│   ├── background/
-│   │   └── InteractiveGradient.vue   # Instância desacoplada do NEAT WebGL
-│   ├── common/
-│   │   ├── BackToTop.vue             # Botão flutuante para voltar ao topo
-│   │   ├── SectionHeading.vue        # Cabeçalhos com tags em badge
-│   │   └── ThemeToggle.vue           # Alternador Sol/Lua com persistência
-│   ├── layout/
-│   │   ├── Navbar.vue                # Barra de navegação com Glassmorphism
-│   │   └── Footer.vue                # Rodapé com ano dinâmico e links
-│   └── sections/
-│       ├── HeroSection.vue           # Apresentação impactante e destaques
-│       ├── AboutSection.vue          # Trajetória contada em 1ª pessoa
-│       ├── ExperienceSection.vue     # Detalhamento corporativo do CREA-RJ
-│       ├── EducationSection.vue      # Graduação UVA (CR 8,9), HackingU e Redbone
-│       ├── SkillsSection.vue         # Habilidades técnicas categorizadas
-│       ├── ProjectsSection.vue       # Projetos com filtros e cards modernos
-│       └── ContactSection.vue        # Conexão, redes e cópia de e-mail em 1 clique
-├── composables/
-│   ├── useScrollSpy.ts               # Destaque dinâmico de seção ativa na navbar
-│   └── useTheme.ts                   # Gestão reativa e persistência de tema
-├── data/
-│   └── portfolioData.ts              # Fonte única da verdade (dados centralizados)
-├── types/
-│   └── portfolio.ts                  # Interfaces e contratos TypeScript
-├── App.vue                           # Orquestrador da Single Page
-├── main.ts                           # Entrada da aplicação
-└── style.css                         # Diretivas Tailwind e estilização global
+│   ├── background/  # Componente do canvas WebGL interativo
+│   ├── common/      # Componentes reutilizáveis (botões, alternador de tema, scroll to top)
+│   ├── layout/      # Cabeçalho (Navbar) e rodapé (Footer)
+│   └── sections/    # Seções da página (Hero, Sobre, Experiência, Formação, Stack, Projetos, Contato)
+├── composables/     # Composables Vue (tema, scroll spy, idioma e conteúdo reativo)
+├── data/            # Conteúdo e dados centralizados em PT e EN
+├── types/           # Interfaces e tipos TypeScript
+├── App.vue          # Componente raiz da aplicação
+├── main.ts          # Ponto de entrada
+└── style.css        # Configurações globais e diretivas do Tailwind CSS
 ```
 
 ---
 
-## ⚙️ Como executar localmente
+## 🚀 Como Executar Localmente
 
-1. **Instalar dependências:**
+### Pré-requisitos
+- [Node.js](https://nodejs.org/) (versão 18 ou superior recomendada)
+- `npm` ou seu gerenciador de pacotes preferido
+
+### Passo a passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone git@github.com:debhgoulart/meu-portifolio.git
+   cd meu-portifolio
+   ```
+
+2. **Instale as dependências:**
    ```bash
    npm install
    ```
 
-2. **Iniciar servidor de desenvolvimento:**
+3. **Inicie o servidor de desenvolvimento:**
    ```bash
    npm run dev
    ```
+   Acesse a aplicação no navegador em `http://localhost:5173`.
 
-3. **Gerar build de produção e validar TypeScript:**
+4. **Gerar build de produção:**
    ```bash
    npm run build
    ```
 
-4. **Visualizar o build localmente:**
+5. **Visualizar o build localmente:**
    ```bash
    npm run preview
    ```
 
 ---
 
-## ✍️ Como atualizar seus dados e projetos
+## 📬 Contato
 
-Toda a fonte de dados do portfólio está isolada em **`src/data/portfolioData.ts`**:
-- Para adicionar novos projetos, basta incluir novos objetos no array `projects`.
-- Para atualizar bio, links de redes sociais ou e-mail, edite o objeto `personalInfo`.
-- Para atualizar novas experiências ou certificações, modifique os arrays correspondentes.
-
----
-
-## 🌐 Publicação na Vercel
-
-O projeto está 100% pronto para publicação estática gratuita na Vercel:
-1. Conecte o repositório GitHub (`debhgoulart/meu-portifolio`) na Vercel.
-2. O arquivo `vercel.json` configurado cuidará do roteamento e otimizações automaticamente.
-3. Build command: `npm run build` | Output directory: `dist`.
+- **LinkedIn:** [linkedin.com/in/debhgoulart](https://www.linkedin.com/in/debhgoulart/)
+- **GitHub:** [@debhgoulart](https://github.com/debhgoulart)
+- **E-mail:** [debh.goulart@gmail.com](mailto:debh.goulart@gmail.com)

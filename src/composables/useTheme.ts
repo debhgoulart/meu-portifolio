@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 const THEME_KEY = 'debhg_theme_preference'
-const isDark = ref(true) // default to dark modern aesthetic
+const isDark = ref(true)
 
 export function useTheme() {
   const toggleTheme = () => {
@@ -31,7 +31,6 @@ export function useTheme() {
     if (stored) {
       isDark.value = stored === 'dark'
     } else {
-      // Check system preference
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       isDark.value = prefersDark
     }

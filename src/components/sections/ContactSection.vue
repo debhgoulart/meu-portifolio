@@ -31,7 +31,6 @@ const copyEmail = async () => {
       />
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-        <!-- Terminal de Contato com Vidro Fosco -->
         <div
           class="md:col-span-7 glass-card p-6 sm:p-10 flex flex-col justify-between font-sans"
         >
@@ -48,7 +47,6 @@ const copyEmail = async () => {
               {{ content.ui.contactSubtitle }}
             </p>
 
-            <!-- Box do E-mail com Vidro Fosco e Botões Quadrados (rounded-lg) -->
             <div
               class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 backdrop-blur-md font-mono"
             >
@@ -93,9 +91,7 @@ const copyEmail = async () => {
           </div>
         </div>
 
-        <!-- Links Rápidos de Redes Sociais com Vidro Fosco -->
         <div class="md:col-span-5 flex flex-col gap-4 justify-between font-sans">
-          <!-- LinkedIn Card -->
           <a
             :href="content.personalInfo.social.linkedin"
             target="_blank"
@@ -118,7 +114,6 @@ const copyEmail = async () => {
             <ArrowUpRight class="w-5 h-5 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
           </a>
 
-          <!-- GitHub Card -->
           <a
             :href="content.personalInfo.social.github"
             target="_blank"
@@ -141,7 +136,6 @@ const copyEmail = async () => {
             <ArrowUpRight class="w-5 h-5 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
           </a>
 
-          <!-- Status Card com Vidro Fosco -->
           <div class="p-6 glass-card font-mono">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs uppercase tracking-wider text-zinc-950 dark:text-white font-bold">

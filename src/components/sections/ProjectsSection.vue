@@ -10,7 +10,6 @@ import { useContent } from '../../composables/useContent'
 
 const { content } = useContent()
 
-// Default to 'project' (Better Half Project View)
 const viewMode = ref<'project' | 'index'>('project')
 const selectedCategory = ref<string>('all')
 
@@ -39,7 +38,6 @@ const getCategoryCount = (catId: string) => {
 <template>
   <section id="projetos" class="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 relative transition-colors duration-500">
     <div class="max-w-6xl mx-auto">
-      <!-- Header da Seção Estilo Better Half -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-zinc-200/60 dark:border-zinc-800/60 mb-12">
         <div>
           <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2">
@@ -50,9 +48,7 @@ const getCategoryCount = (catId: string) => {
           </h2>
         </div>
 
-        <!-- Controles de Exibição: Project View vs Index View + Categorias com botões menos redondos (rounded-md) -->
         <div class="flex flex-wrap items-center gap-3">
-          <!-- Categorias com rounded-md -->
           <div class="flex items-center gap-1 text-xs font-mono">
             <button
               v-for="cat in categories"
@@ -72,7 +68,6 @@ const getCategoryCount = (catId: string) => {
 
           <div class="h-4 w-px bg-zinc-300 dark:bg-zinc-800 hidden sm:block"></div>
 
-          <!-- Better Half Mode Switcher com botões quadrados (rounded-md) -->
           <div class="flex items-center gap-1 text-xs font-mono border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/5 backdrop-blur-md p-1 rounded-md">
             <button
               type="button"
@@ -103,16 +98,12 @@ const getCategoryCount = (catId: string) => {
         </div>
       </div>
 
-      <!-- ==================================================== -->
-      <!-- BETTER HALF: PROJECT VIEW COM TEXTURA DE VIDRO FOSCO -->
-      <!-- ==================================================== -->
       <div v-if="viewMode === 'project'" class="space-y-12 sm:space-y-16">
         <article
           v-for="project in filteredProjects"
           :key="project.id"
           class="glass-card p-6 sm:p-10 space-y-8"
         >
-          <!-- Barra de Metadados Superiores do Projeto -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs text-zinc-500 dark:text-zinc-400 border-b border-zinc-200/50 dark:border-zinc-800/60 pb-4">
             <div class="flex items-center gap-3">
               <span class="font-bold text-zinc-950 dark:text-white">[{{ project.index || '01' }}]</span>
@@ -126,9 +117,7 @@ const getCategoryCount = (catId: string) => {
             </div>
           </div>
 
-          <!-- Layout do Project View: Grid Editorial Amplo -->
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Coluna Principal com Título, Descrição e Destaques Arquiteturais -->
             <div class="lg:col-span-8 space-y-6">
               <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
                 {{ project.title }}
@@ -138,7 +127,6 @@ const getCategoryCount = (catId: string) => {
                 {{ project.description }}
               </p>
 
-              <!-- Módulo de Arquitetura e Engenharia com Vidro Fosco -->
               <div v-if="project.architecture && project.architecture.length > 0" class="pt-4 space-y-3">
                 <span class="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold flex items-center gap-1.5">
                   <Cpu class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" />
@@ -157,9 +145,7 @@ const getCategoryCount = (catId: string) => {
               </div>
             </div>
 
-            <!-- Coluna Lateral de Especificações Técnicas (Better Half Sidebar) -->
             <div class="lg:col-span-4 space-y-6 lg:border-l lg:border-zinc-200/60 dark:lg:border-zinc-800/60 lg:pl-8">
-              <!-- Papel no Projeto -->
               <div class="space-y-1">
                 <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
                   Escopo / Função
@@ -169,7 +155,6 @@ const getCategoryCount = (catId: string) => {
                 </p>
               </div>
 
-              <!-- Tecnologias Empregadas -->
               <div class="space-y-2">
                 <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
                   Stack Tecnológica
@@ -185,7 +170,6 @@ const getCategoryCount = (catId: string) => {
                 </div>
               </div>
 
-              <!-- Contexto / Métricas -->
               <div v-if="project.metrics" class="space-y-1">
                 <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
                   Contexto Institucional
@@ -195,7 +179,6 @@ const getCategoryCount = (catId: string) => {
                 </p>
               </div>
 
-              <!-- Ações Diretas com Botões Quadrados (rounded-lg) -->
               <div class="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 flex flex-col gap-2.5 font-mono text-xs">
                 <a
                   v-if="project.githubUrl"
@@ -227,9 +210,6 @@ const getCategoryCount = (catId: string) => {
         </article>
       </div>
 
-      <!-- ==================================================== -->
-      <!-- BETTER HALF: INDEX VIEW (COMPACT EDITORIAL LIST)     -->
-      <!-- ==================================================== -->
       <div v-else class="space-y-0 border-t border-zinc-200/60 dark:border-zinc-800/60">
         <div
           v-for="project in filteredProjects"

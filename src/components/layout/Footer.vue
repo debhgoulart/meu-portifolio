@@ -23,7 +23,6 @@ const scrollToTop = () => {
         </p>
       </div>
 
-      <!-- Links de redes sociais com botões quadrados (rounded-lg) -->
       <div class="flex items-center gap-2.5">
         <a
           :href="content.personalInfo.social.github"
@@ -55,7 +54,6 @@ const scrollToTop = () => {
 
         <div class="h-4 w-px bg-zinc-300 dark:bg-zinc-800 mx-1"></div>
 
-        <!-- Botão Voltar ao Topo menos redondo (rounded-md) -->
         <button
           type="button"
           @click="scrollToTop"

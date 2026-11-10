@@ -16,7 +16,6 @@ const { content } = useContent()
       />
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        <!-- Card Principal da Graduação com Vidro Fosco -->
         <div
           class="lg:col-span-6 glass-card p-6 sm:p-8 flex flex-col justify-between"
         >
@@ -60,7 +59,6 @@ const { content } = useContent()
           </div>
         </div>
 
-        <!-- Coluna de Grupos Extracurriculares com Vidro Fosco -->
         <div class="lg:col-span-6 flex flex-col gap-6 justify-between">
           <div
             v-for="(extra, idx) in content.extracurriculars"

@@ -21,7 +21,6 @@ const { content } = useContent()
           :key="exp.id"
           class="glass-card p-6 sm:p-10 transition-colors"
         >
-          <!-- Cabeçalho do Card de Experiência -->
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-200/60 dark:border-zinc-800/60">
             <div class="space-y-2">
               <div class="flex flex-wrap items-center gap-2.5 font-mono">
@@ -61,12 +60,10 @@ const { content } = useContent()
             </div>
           </div>
 
-          <!-- Resumo de Atuação -->
           <p class="mt-6 text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
             {{ exp.description }}
           </p>
 
-          <!-- Destaques das Atividades Relevantes -->
           <div class="mt-8 space-y-3">
             <h4 class="font-mono text-xs uppercase tracking-wider font-semibold text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
               <Terminal class="w-3.5 h-3.5 text-zinc-500" />
@@ -87,7 +84,6 @@ const { content } = useContent()
             </div>
           </div>
 
-          <!-- Tecnologias e Ferramentas Empregadas -->
           <div class="mt-8 pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60">
             <div class="flex flex-wrap items-center gap-2 font-mono">
               <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mr-2 flex items-center gap-1">

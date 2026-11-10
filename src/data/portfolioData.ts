@@ -502,7 +502,6 @@ export const contentEN: LocalizedContent = {
   },
 }
 
-// Export default helpers for reactive consumption
 export const personalInfo = contentPT.personalInfo
 export const experiences = contentPT.experiences
 export const education = contentPT.education

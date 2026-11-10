@@ -25,13 +25,9 @@ onMounted(() => {
 
 <template>
   <div class="relative min-h-screen text-zinc-950 dark:text-zinc-50 selection:bg-purple-900/10 selection:text-purple-900 dark:selection:bg-purple-400/20 dark:selection:text-purple-200 font-sans transition-colors duration-500">
-    <!-- Background Interativo NEAT WebGL cobrindo todo o portfólio -->
     <InteractiveGradient />
-
-    <!-- Header minimalista estilo monopo.vn -->
     <Navbar />
 
-    <!-- Conteúdo Principal de Página Única -->
     <main class="relative z-10">
       <HeroSection />
       <AboutSection />
@@ -42,10 +38,7 @@ onMounted(() => {
       <ContactSection />
     </main>
 
-    <!-- Rodapé -->
     <Footer />
-
-    <!-- Botão Flutuante Voltar ao Topo -->
     <BackToTop />
   </div>
 </template>

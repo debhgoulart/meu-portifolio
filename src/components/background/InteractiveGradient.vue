@@ -11,7 +11,6 @@ const hasWebGLError = ref(false)
 let neatInstance: NeatGradient | null = null
 let animationFrameId: number | null = null
 
-// Paleta Clara — Tons suaves e muito claros de roxo pastel e lavanda, sem saturação excessiva
 const lightColors: NeatColor[] = [
   { color: '#ffffff', enabled: true },
   { color: '#faf5ff', enabled: true },
@@ -20,7 +19,6 @@ const lightColors: NeatColor[] = [
   { color: '#f5f3ff', enabled: true },
 ]
 
-// Paleta Escura — Tons escuros e profundos de roxo, sem elementos neon
 const darkColors: NeatColor[] = [
   { color: '#000000', enabled: true },
   { color: '#0f051c', enabled: true },
@@ -29,7 +27,6 @@ const darkColors: NeatColor[] = [
   { color: '#18072c', enabled: true },
 ]
 
-// Parâmetros de física e interpolação do mouse
 const currentX = ref(0.5)
 const currentY = ref(0.5)
 const targetX = ref(0.5)
@@ -71,12 +68,10 @@ const updateAnimationLoop = () => {
     return
   }
 
-  // Interpolação suave (lerp)
   const lerpFactor = 0.035
   currentX.value += (targetX.value - currentX.value) * lerpFactor
   currentY.value += (targetY.value - currentY.value) * lerpFactor
 
-  // Movimento ambiente orgânico e sutil
   const t = now * 0.0006
   let ambientOffsetX = Math.sin(t) * 0.1
   let ambientOffsetY = Math.cos(t * 0.8) * 0.1
@@ -96,7 +91,6 @@ const updateAnimationLoop = () => {
     neatInstance.waveFrequencyX = 1.6 + effectiveX * 0.8
     neatInstance.waveFrequencyY = 1.6 + effectiveY * 0.8
   } catch {
-    // Proteger caso o contexto WebGL esteja atualizando
   }
 
   animationFrameId = requestAnimationFrame(updateAnimationLoop)
@@ -194,14 +188,12 @@ onUnmounted(() => {
     class="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none transition-colors duration-1000"
     aria-hidden="true"
   >
-    <!-- Canvas WebGL com NEAT ocupando toda a tela -->
     <canvas
       v-if="!hasWebGLError"
       ref="canvasRef"
       class="w-full h-full block opacity-85 dark:opacity-90 transition-opacity duration-1000"
     ></canvas>
 
-    <!-- Fallback em gradiente CSS suave -->
     <div
       v-else
       class="w-full h-full relative"
@@ -217,7 +209,6 @@ onUnmounted(() => {
       ></div>
     </div>
 
-    <!-- Máscara sutil de contraste para manter excelente legibilidade em toda a página -->
     <div
       class="absolute inset-0 pointer-events-none transition-opacity duration-700"
       :class="isDark ? 'bg-black/30' : 'bg-white/40'"

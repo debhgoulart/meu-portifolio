@@ -73,12 +73,9 @@ const scrollToSection = (e: MouseEvent, href: string) => {
         </div>
       </div>
 
-      <!-- Canto Direito: Botão Tema Claro/Escuro + Links de Navegação estilo Monopo -->
       <div class="flex items-center gap-5 sm:gap-7 pointer-events-auto">
-        <!-- Botão modo claro/escuro posicionado antes da barra de navegação -->
         <ThemeToggle />
 
-        <!-- Links de navegação desktop idênticos ao monopo.vn -->
         <nav
           class="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-medium tracking-tight"
           aria-label="Navegação Principal"
@@ -99,7 +96,6 @@ const scrollToSection = (e: MouseEvent, href: string) => {
           </a>
         </nav>
 
-        <!-- Botão Menu Mobile -->
         <button
           type="button"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
@@ -113,7 +109,6 @@ const scrollToSection = (e: MouseEvent, href: string) => {
       </div>
     </div>
 
-    <!-- Menu Mobile Dropdown Limpo e Minimalista -->
     <transition
       enter-active-class="transition duration-200 ease-out"
       enter-from-class="transform -translate-y-4 opacity-0"
