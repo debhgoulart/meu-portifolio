@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { X } from 'lucide-vue-next'
-import ThemeToggle from '../common/ThemeToggle.vue'
 import { useScrollSpy } from '../../composables/useScrollSpy'
 import { useContent } from '../../composables/useContent'
 
@@ -38,10 +37,10 @@ const scrollToSection = (e: MouseEvent, href: string) => {
       <div class="flex items-center gap-4 sm:gap-6 pointer-events-auto">
         <a
           href="#hero"
-          @click="scrollToSection($event, '#hero')"
+          @click="scrollToSection($event, '#hero')" 
           class="text-sm sm:text-base font-bold tracking-tight text-zinc-950 dark:text-zinc-50 hover:opacity-70 dark:hover:text-white transition-all"
         >
-          deborah goulart
+          Deborah Goulart
         </a>
 
         <div class="flex items-center gap-1.5 text-xs font-mono tracking-wider">
@@ -74,8 +73,6 @@ const scrollToSection = (e: MouseEvent, href: string) => {
       </div>
 
       <div class="flex items-center gap-5 sm:gap-7 pointer-events-auto">
-        <ThemeToggle />
-
         <nav
           class="hidden md:flex items-center gap-5 lg:gap-7 text-xs sm:text-sm font-medium tracking-tight"
           aria-label="Navegação Principal"
@@ -88,7 +85,7 @@ const scrollToSection = (e: MouseEvent, href: string) => {
             class="transition-all duration-200 cursor-pointer capitalize hover:text-zinc-950 dark:hover:text-white"
             :class="
               activeSection === link.href.replace('#', '')
-                ? 'text-zinc-950 dark:text-white font-bold underline underline-offset-4 decoration-purple-600 dark:decoration-purple-400'
+                ? 'text-zinc-950 dark:text-white font-bold underline underline-offset-4 decoration-white-600 dark:decoration-white-400'
                 : 'text-zinc-600 dark:text-zinc-400'
             "
           >
@@ -122,7 +119,7 @@ const scrollToSection = (e: MouseEvent, href: string) => {
         class="md:hidden pointer-events-auto mx-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-black/95 backdrop-blur-2xl space-y-4 shadow-2xl"
       >
         <div class="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-zinc-800">
-          <span class="font-bold text-sm text-zinc-950 dark:text-zinc-50">deborah goulart</span>
+          <span class="font-bold text-sm text-zinc-950 dark:text-zinc-50">Deborah Goulart</span>
           <button
             type="button"
             @click="closeMobileMenu"

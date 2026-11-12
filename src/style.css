@@ -8,8 +8,8 @@
   }
 
   body {
-    background-color: #ffffff;
-    color: #09090b;
+    background-color: #000000;
+    color: #fafafa;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 

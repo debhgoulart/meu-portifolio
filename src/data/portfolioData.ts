@@ -17,7 +17,8 @@ export interface LocalizedContent {
   navLinks: { label: string; href: string; index: string }[]
   ui: {
     availableStatus: string
-    heroCtaProjects: string
+    heroCtaResume: string
+    heroCtaProjects?: string
     heroCtaContact: string
     copySuccess: string
     copyBtn: string
@@ -251,6 +252,7 @@ export const contentPT: LocalizedContent = {
   ],
   ui: {
     availableStatus: 'DISPONÍVEL // ESTÁGIO CREA-RJ',
+    heroCtaResume: 'BAIXAR CURRÍCULO',
     heroCtaProjects: 'VER PROJETOS',
     heroCtaContact: 'ENTRAR EM CONTATO',
     copySuccess: 'COPIADO!',
@@ -485,6 +487,7 @@ export const contentEN: LocalizedContent = {
   ],
   ui: {
     availableStatus: 'AVAILABLE // CREA-RJ INTERN',
+    heroCtaResume: 'DOWNLOAD CV',
     heroCtaProjects: 'VIEW PROJECTS',
     heroCtaContact: 'GET IN TOUCH',
     copySuccess: 'COPIED!',

@@ -5,36 +5,24 @@ const isDark = ref(true)
 
 export function useTheme() {
   const toggleTheme = () => {
-    isDark.value = !isDark.value
-    applyTheme(isDark.value)
+    // Modo escuro permanente
+    applyTheme()
   }
 
-  const setTheme = (dark: boolean) => {
-    isDark.value = dark
-    applyTheme(dark)
+  const setTheme = (_dark: boolean) => {
+    // Modo escuro permanente
+    applyTheme()
   }
 
-  const applyTheme = (dark: boolean) => {
+  const applyTheme = () => {
     if (typeof document === 'undefined') return
     const root = document.documentElement
-    if (dark) {
-      root.classList.add('dark')
-    } else {
-      root.classList.remove('dark')
-    }
-    localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light')
+    root.classList.add('dark')
+    localStorage.setItem(THEME_KEY, 'dark')
   }
 
   const initTheme = () => {
-    if (typeof window === 'undefined') return
-    const stored = localStorage.getItem(THEME_KEY)
-    if (stored) {
-      isDark.value = stored === 'dark'
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      isDark.value = prefersDark
-    }
-    applyTheme(isDark.value)
+    applyTheme()
   }
 
   return {
