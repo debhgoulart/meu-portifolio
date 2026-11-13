@@ -26,7 +26,7 @@ const currentYear = computed(() => new Date().getFullYear())
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub de Deborah Goulart"
-          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-zinc-800 bg-white/20 dark:bg-white/5 backdrop-blur-md transition-colors"
+          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-200 border border-zinc-200/80 dark:border-blue-900/50 bg-white/20 dark:bg-[#000E2B]/70 backdrop-blur-md dark:hover:bg-[#0B0D4E] transition-colors"
         >
           <Github class="w-4 h-4" />
         </a>
@@ -36,7 +36,7 @@ const currentYear = computed(() => new Date().getFullYear())
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn de Deborah Goulart"
-          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-zinc-800 bg-white/20 dark:bg-white/5 backdrop-blur-md transition-colors"
+          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-200 border border-zinc-200/80 dark:border-blue-900/50 bg-white/20 dark:bg-[#000E2B]/70 backdrop-blur-md dark:hover:bg-[#0B0D4E] transition-colors"
         >
           <Linkedin class="w-4 h-4" />
         </a>
@@ -44,7 +44,7 @@ const currentYear = computed(() => new Date().getFullYear())
         <a
           :href="'mailto:' + content.personalInfo.social.email"
           aria-label="E-mail de Deborah Goulart"
-          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-zinc-800 bg-white/20 dark:bg-white/5 backdrop-blur-md transition-colors"
+          class="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-200 border border-zinc-200/80 dark:border-blue-900/50 bg-white/20 dark:bg-[#000E2B]/70 backdrop-blur-md dark:hover:bg-[#0B0D4E] transition-colors"
         >
           <Mail class="w-4 h-4" />
         </a>

@@ -76,7 +76,7 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
         <a
           href="#projetos"
           @click="scrollToSection($event, 'projetos')"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg uppercase tracking-wider font-bold bg-zinc-950 dark:bg-zinc-100 text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-all duration-200 cursor-pointer shadow-md hover:scale-[1.02]"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg uppercase tracking-wider font-bold bg-blue-600 hover:bg-blue-700 text-white dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white transition-all duration-200 cursor-pointer shadow-md hover:scale-[1.02]"
         >
           <span>{{ content.ui.heroCtaProjects }}</span>
           <ArrowUpRight class="w-3.5 h-3.5" />
@@ -88,14 +88,14 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
           :download="cvDownloadName"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg uppercase tracking-wider font-bold border border-zinc-300 dark:border-zinc-800 text-zinc-950 dark:text-zinc-100 hover:border-zinc-950 dark:hover:border-zinc-100 bg-white/40 dark:bg-black/30 backdrop-blur-md transition-all duration-200 cursor-pointer hover:scale-[1.02]"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg uppercase tracking-wider font-bold border border-zinc-300 dark:border-blue-900/50 text-zinc-950 dark:text-zinc-100 hover:border-blue-600 dark:hover:border-blue-400 bg-white/40 dark:bg-[#000E2B]/60 backdrop-blur-md transition-all duration-200 cursor-pointer hover:scale-[1.02]"
         >
           <span>{{ content.ui.heroCtaResume }}</span>
           <Download class="w-3.5 h-3.5" />
         </a>
 
         <!-- Localização Rio de Janeiro, RJ (Badge Quadrado) -->
-        <div class="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white/40 dark:bg-black/30 backdrop-blur-md text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider shadow-sm">
+        <div class="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-zinc-300 dark:border-blue-900/50 bg-white/40 dark:bg-[#000E2B]/60 backdrop-blur-md text-zinc-900 dark:text-zinc-100 font-bold uppercase tracking-wider shadow-sm">
           <MapPin class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
           <span>Rio de Janeiro, RJ</span>
         </div>

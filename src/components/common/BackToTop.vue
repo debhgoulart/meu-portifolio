@@ -35,7 +35,7 @@ onUnmounted(() => {
       type="button"
       @click="scrollToTop"
       aria-label="Voltar ao topo da página"
-      class="fixed bottom-6 right-6 z-40 p-2.5 rounded-lg bg-zinc-950/85 text-white dark:bg-zinc-100/90 dark:text-zinc-950 border border-white/20 dark:border-zinc-800 shadow-md backdrop-blur-md hover:opacity-85 active:scale-95 transition-all cursor-pointer"
+      class="fixed bottom-6 right-6 z-40 p-2.5 rounded-lg bg-blue-600/90 hover:bg-blue-700 text-white dark:bg-[#000E2B]/90 dark:text-blue-100 border border-white/20 dark:border-blue-500/40 shadow-md backdrop-blur-md hover:opacity-95 active:scale-95 transition-all cursor-pointer"
     >
       <ArrowUp class="w-4 h-4" />
     </button>

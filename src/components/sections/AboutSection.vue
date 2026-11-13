@@ -205,7 +205,7 @@ onUnmounted(() => {
               class="px-4 py-2 rounded-lg font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer"
               :class="
                 activeTab === 'redbone'
-                  ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
+                  ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
               "
             >
@@ -219,7 +219,7 @@ onUnmounted(() => {
               class="px-4 py-2 rounded-lg font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer"
               :class="
                 activeTab === 'hackingu'
-                  ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
+                  ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
               "
             >
@@ -283,7 +283,7 @@ onUnmounted(() => {
                   type="button"
                   @click.stop="prevSlide"
                   aria-label="Foto anterior"
-                  class="pointer-events-auto p-2 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg"
+                  class="pointer-events-auto p-2 rounded-full bg-[#000E2B]/80 hover:bg-[#0B0D4E] text-white backdrop-blur-md border border-white/20 dark:border-blue-500/30 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg"
                 >
                   <ChevronLeft class="w-4 h-4" />
                 </button>
@@ -292,7 +292,7 @@ onUnmounted(() => {
                   type="button"
                   @click.stop="nextSlide"
                   aria-label="Próxima foto"
-                  class="pointer-events-auto p-2 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg"
+                  class="pointer-events-auto p-2 rounded-full bg-[#000E2B]/80 hover:bg-[#0B0D4E] text-white backdrop-blur-md border border-white/20 dark:border-blue-500/30 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg"
                 >
                   <ChevronRight class="w-4 h-4" />
                 </button>

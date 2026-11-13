@@ -87,7 +87,7 @@ onUnmounted(() => {
     <!-- BOTÃO PT/EN: NO EXTREMO CANTO ESQUERDO DO SITE -->
     <div class="absolute left-3 sm:left-6 lg:left-8 top-5 sm:top-7 pointer-events-auto z-50">
       <div
-        class="inline-flex items-center p-0.5 rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white/70 dark:bg-black/60 backdrop-blur-md shadow-xs font-mono text-[10px] font-bold uppercase select-none"
+        class="inline-flex items-center p-0.5 rounded-lg border border-zinc-300 dark:border-blue-900/50 bg-white/70 dark:bg-[#000E2B]/80 backdrop-blur-md shadow-xs font-mono text-[10px] font-bold uppercase select-none"
         role="group"
         aria-label="Seleção de idioma / Language selection"
       >
@@ -98,7 +98,7 @@ onUnmounted(() => {
           class="w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-md flex items-center justify-center transition-all duration-200 cursor-pointer"
           :class="
             currentLang === 'pt'
-              ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-xs'
+              ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-xs'
               : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
           "
         >
@@ -111,7 +111,7 @@ onUnmounted(() => {
           class="w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-md flex items-center justify-center transition-all duration-200 cursor-pointer"
           :class="
             currentLang === 'en'
-              ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-xs'
+              ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-xs'
               : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
           "
         >
@@ -127,7 +127,7 @@ onUnmounted(() => {
         @click="toggleTheme"
         :aria-label="isDark ? 'Alternar para modo claro' : 'Alternar para modo escuro'"
         :title="isDark ? 'Alternar para modo claro' : 'Alternar para modo escuro'"
-        class="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-lg border border-zinc-300 dark:border-zinc-800 bg-white/70 dark:bg-black/60 backdrop-blur-md flex items-center justify-center text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:border-zinc-950 dark:hover:border-zinc-100 transition-all cursor-pointer shadow-xs active:scale-95 focus:outline-none"
+        class="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-lg border border-zinc-300 dark:border-blue-900/50 bg-white/70 dark:bg-[#000E2B]/80 backdrop-blur-md flex items-center justify-center text-zinc-700 dark:text-blue-100 hover:text-blue-600 dark:hover:text-white hover:border-blue-600 dark:hover:border-blue-400 transition-all cursor-pointer shadow-xs active:scale-95 focus:outline-none"
       >
         <Sun v-if="isDark" class="w-3.5 h-3.5" />
         <Moon v-else class="w-3.5 h-3.5" />
@@ -175,7 +175,7 @@ onUnmounted(() => {
             @click="isMobileMenuOpen = !isMobileMenuOpen"
             :aria-expanded="isMobileMenuOpen"
             aria-label="Alternar menu de navegação"
-            class="md:hidden text-xs font-mono uppercase tracking-wider text-zinc-900 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white py-1 px-2 border border-zinc-300 dark:border-zinc-800 rounded bg-white/70 dark:bg-black/70 backdrop-blur-md transition-colors"
+            class="md:hidden text-xs font-mono uppercase tracking-wider text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-white py-1 px-2 border border-zinc-300 dark:border-blue-900/50 rounded bg-white/70 dark:bg-[#000E2B]/80 backdrop-blur-md transition-colors"
           >
             <span v-if="!isMobileMenuOpen">menu</span>
             <span v-else>close</span>
@@ -195,7 +195,7 @@ onUnmounted(() => {
     >
       <div
         v-if="isMobileMenuOpen"
-        class="md:hidden pointer-events-auto mx-4 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-black/95 backdrop-blur-2xl space-y-4 shadow-2xl"
+        class="md:hidden pointer-events-auto mx-4 p-6 rounded-2xl border border-zinc-200 dark:border-blue-900/50 bg-white/95 dark:bg-[#000E2B]/95 backdrop-blur-2xl space-y-4 shadow-2xl"
       >
         <div class="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-zinc-800">
           <span class="font-bold text-sm text-zinc-950 dark:text-zinc-50">Deborah Goulart</span>

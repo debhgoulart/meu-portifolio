@@ -133,7 +133,7 @@ onUnmounted(() => {
             class="px-5 py-2.5 rounded-lg font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer"
             :class="
               activeTab === 'redbone'
-                ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
+                ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
             "
           >
@@ -147,7 +147,7 @@ onUnmounted(() => {
             class="px-5 py-2.5 rounded-lg font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer"
             :class="
               activeTab === 'hackingu'
-                ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
+                ? 'bg-blue-600 text-white dark:bg-zinc-100 dark:text-zinc-950 shadow-md scale-[1.02]'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
             "
           >
@@ -162,7 +162,7 @@ onUnmounted(() => {
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <!-- Coluna Esquerda: Carrossel de Fotos Ampliado Verticalmente -->
           <div
-            class="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 bg-zinc-950/90 shadow-2xl select-none group"
+            class="lg:col-span-5 relative w-full h-[340px] sm:h-[420px] rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 bg-[#000E2B]/90 shadow-2xl select-none group"
             @mouseenter="isPaused = true"
             @mouseleave="isPaused = false"
             @touchstart="handleTouchStart"
@@ -190,7 +190,7 @@ onUnmounted(() => {
             </transition>
 
             <!-- Overlay sutil -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/25 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000E2B]/85 via-transparent to-[#000E2B]/25 pointer-events-none"></div>
 
             <!-- Controles de Navegação Anterior / Próximo -->
             <div
@@ -201,7 +201,7 @@ onUnmounted(() => {
                 type="button"
                 @click.stop="prevSlide"
                 aria-label="Foto anterior"
-                class="pointer-events-auto p-2.5 rounded-full bg-black/70 hover:bg-black/95 text-white backdrop-blur-md border border-white/25 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-xl hover:scale-110"
+                class="pointer-events-auto p-2.5 rounded-full bg-[#000E2B]/80 hover:bg-[#0B0D4E] text-white backdrop-blur-md border border-white/25 dark:border-blue-500/30 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-xl hover:scale-110"
               >
                 <ChevronLeft class="w-5 h-5" />
               </button>
@@ -210,7 +210,7 @@ onUnmounted(() => {
                 type="button"
                 @click.stop="nextSlide"
                 aria-label="Próxima foto"
-                class="pointer-events-auto p-2.5 rounded-full bg-black/70 hover:bg-black/95 text-white backdrop-blur-md border border-white/25 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-xl hover:scale-110"
+                class="pointer-events-auto p-2.5 rounded-full bg-[#000E2B]/80 hover:bg-[#0B0D4E] text-white backdrop-blur-md border border-white/25 dark:border-blue-500/30 transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-xl hover:scale-110"
               >
                 <ChevronRight class="w-5 h-5" />
               </button>

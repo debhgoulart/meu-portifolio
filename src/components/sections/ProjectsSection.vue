@@ -50,7 +50,7 @@ const showLess = () => {
           <!-- Coluna Esquerda: Preview / Ilustração / Imagem Demo -->
           <div class="lg:col-span-5 flex justify-center">
             <div class="relative w-full max-w-md aspect-[16/11] rounded-2xl overflow-hidden glass-card p-2 border border-white/30 dark:border-white/10 group shadow-2xl">
-              <div class="w-full h-full rounded-xl overflow-hidden relative bg-zinc-950/40">
+              <div class="w-full h-full rounded-xl overflow-hidden relative bg-[#000E2B]/50">
                 <img
                   :src="project.image || '/images/projects/project-demo.jpg'"
                   :alt="project.title"
@@ -61,7 +61,7 @@ const showLess = () => {
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
 
                 <div class="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-[#000E2B]/85 backdrop-blur-md text-white border border-blue-400/30">
                     {{ project.category }}
                   </span>
                 </div>
@@ -104,14 +104,14 @@ const showLess = () => {
               </div>
             </div>
 
-            <!-- Botões Estilizados (Preto e Branco) -->
+            <!-- Botões Estilizados -->
             <div class="pt-4 flex flex-wrap items-center gap-3.5 text-xs font-mono">
               <a
                 v-if="project.githubUrl"
                 :href="project.githubUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-950 dark:hover:border-white hover:bg-white/30 dark:hover:bg-white/10 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm hover:scale-[1.02]"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-2 border-zinc-300 dark:border-blue-900/50 hover:border-blue-600 dark:hover:border-blue-400 hover:bg-white/30 dark:hover:bg-[#000E2B]/50 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm hover:scale-[1.02]"
                 :aria-label="'Ver ' + project.title + ' no GitHub'"
               >
                 <Github class="w-4 h-4" />
@@ -123,7 +123,7 @@ const showLess = () => {
                 :href="project.liveUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-all duration-200 cursor-pointer shadow-md hover:scale-[1.02]"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider bg-blue-600 hover:bg-blue-700 text-white dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white transition-all duration-200 cursor-pointer shadow-md hover:scale-[1.02]"
                 :aria-label="'Ver demonstração online de ' + project.title"
               >
                 <span>{{ content.ui.viewDemo }}</span>
@@ -140,7 +140,7 @@ const showLess = () => {
           v-if="visibleCount < content.projects.length"
           type="button"
           @click="showMore"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-white/20 hover:border-zinc-950 dark:hover:border-white/60 hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-blue-900/50 hover:border-blue-600 dark:hover:border-blue-400 hover:bg-blue-600/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
         >
           <span>Ver mais</span>
           <ChevronDown class="w-4 h-4" />
@@ -150,7 +150,7 @@ const showLess = () => {
           v-if="visibleCount > 3"
           type="button"
           @click="showLess"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-white/20 hover:border-zinc-950 dark:hover:border-white/60 hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-blue-900/50 hover:border-blue-600 dark:hover:border-blue-400 hover:bg-blue-600/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
         >
           <span>Ver menos</span>
           <ChevronUp class="w-4 h-4" />

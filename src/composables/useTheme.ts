@@ -21,11 +21,18 @@ export function useTheme() {
   const toggleTheme = () => {
     isDark.value = !isDark.value
     applyTheme(isDark.value)
+    if (typeof window !== 'undefined') {
+      window.location.reload()
+    }
   }
 
   const setTheme = (dark: boolean) => {
+    if (isDark.value === dark) return
     isDark.value = dark
     applyTheme(dark)
+    if (typeof window !== 'undefined') {
+      window.location.reload()
+    }
   }
 
   const initTheme = () => {

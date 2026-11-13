@@ -56,7 +56,7 @@ const copyEmail = async () => {
               class="p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono transition-all duration-300 hover:border-white/60 dark:hover:border-white/30"
             >
               <div class="flex items-center gap-3 truncate">
-                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md shrink-0">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-[#000E2B]/80 text-zinc-900 dark:text-blue-100 border border-white/40 dark:border-blue-900/50 backdrop-blur-md shrink-0">
                   <Mail class="w-5 h-5" />
                 </div>
                 <div class="truncate">
@@ -75,7 +75,7 @@ const copyEmail = async () => {
                   :class="
                     copied
                       ? 'bg-emerald-600 text-white'
-                      : 'bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 border border-white/40 dark:border-white/10'
+                      : 'bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 hover:bg-blue-600 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 border border-white/40 dark:border-white/10'
                   "
                   :aria-label="copied ? content.ui.copySuccess : content.ui.copyBtn"
                 >
@@ -86,7 +86,7 @@ const copyEmail = async () => {
 
                 <a
                   :href="'mailto:' + content.personalInfo.social.email"
-                  class="inline-flex items-center justify-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-colors shadow-sm"
+                  class="inline-flex items-center justify-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-blue-600 hover:bg-blue-700 text-white dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white transition-colors shadow-sm"
                 >
                   <span>{{ content.ui.openBtn }}</span>
                   <ArrowUpRight class="w-3.5 h-3.5" />
@@ -122,7 +122,7 @@ const copyEmail = async () => {
           <div class="block lg:hidden mx-8 h-px bg-zinc-200/60 dark:bg-zinc-800/60"></div>
 
           <!-- Lado Direito: LinkedIn e GitHub -->
-          <div class="p-7 sm:p-10 lg:p-12 flex flex-col justify-center gap-4 font-sans bg-white/[0.02] dark:bg-black/20">
+          <div class="p-7 sm:p-10 lg:p-12 flex flex-col justify-center gap-4 font-sans bg-white/[0.02] dark:bg-[#000E2B]/30">
             <!-- Card LinkedIn -->
             <a
               :href="content.personalInfo.social.linkedin"
@@ -131,7 +131,7 @@ const copyEmail = async () => {
               class="group p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-white/60 dark:hover:border-white/30 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.01]"
             >
               <div class="flex items-center gap-4">
-                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-110 transition-transform">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-[#000E2B]/80 text-zinc-900 dark:text-blue-100 border border-white/40 dark:border-blue-900/50 backdrop-blur-md group-hover:scale-110 transition-transform">
                   <Linkedin class="w-5 h-5" />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ const copyEmail = async () => {
               class="group p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-white/60 dark:hover:border-white/30 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.01]"
             >
               <div class="flex items-center gap-4">
-                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-110 transition-transform">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-[#000E2B]/80 text-zinc-900 dark:text-blue-100 border border-white/40 dark:border-blue-900/50 backdrop-blur-md group-hover:scale-110 transition-transform">
                   <Github class="w-5 h-5" />
                 </div>
                 <div>

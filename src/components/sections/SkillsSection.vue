@@ -107,7 +107,7 @@ const getCategoryIcon = (category: string) => {
         >
           <!-- Ícone do Cabeçalho da Categoria -->
           <div
-            class="p-3.5 rounded-2xl bg-white/50 dark:bg-white/5 text-zinc-950 dark:text-white border border-white/40 dark:border-white/10 mb-4 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/30 transition-all"
+            class="p-3.5 rounded-2xl bg-white/50 dark:bg-[#000E2B]/80 text-zinc-950 dark:text-blue-100 border border-white/40 dark:border-blue-900/50 mb-4 group-hover:scale-110 group-hover:bg-blue-600/15 dark:group-hover:bg-[#0B0D4E] group-hover:border-blue-400/40 transition-all"
           >
             <component :is="getCategoryIcon(cat.category)" class="w-6 h-6" />
           </div>
@@ -127,7 +127,7 @@ const getCategoryIcon = (category: string) => {
               :key="skill.name"
               class="flex items-center gap-3 p-2 rounded-lg text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5 transition-colors group/item"
             >
-              <div class="p-1.5 rounded-md bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-zinc-200 group-hover/item:bg-black/10 dark:group-hover/item:bg-white/20 group-hover/item:text-zinc-950 dark:group-hover/item:text-white shrink-0 transition-colors">
+              <div class="p-1.5 rounded-md bg-blue-600/10 dark:bg-[#000E2B]/80 text-zinc-900 dark:text-blue-200 border border-transparent dark:border-blue-900/30 group-hover/item:bg-blue-600/20 dark:group-hover/item:bg-[#0B0D4E] group-hover/item:text-blue-900 dark:group-hover/item:text-white shrink-0 transition-colors">
                 <component :is="getSkillIcon(skill.name)" class="w-3.5 h-3.5" />
               </div>
               <span class="truncate font-medium">{{ skill.name }}</span>

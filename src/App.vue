@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative min-h-screen text-zinc-950 dark:text-zinc-50 selection:bg-zinc-800 selection:text-white dark:selection:bg-zinc-200 dark:selection:text-zinc-950 font-sans transition-colors duration-500">
+  <div class="relative min-h-screen text-zinc-950 dark:text-zinc-50 selection:bg-blue-600 selection:text-white dark:selection:bg-blue-500 dark:selection:text-white font-sans transition-colors duration-500">
     <InteractiveGradient />
     <Navbar />
 
