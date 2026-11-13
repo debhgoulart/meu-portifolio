@@ -1,160 +1,150 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { NeatGradient } from '@firecms/neat'
-import type { NeatColor } from '@firecms/neat'
-import { useTheme } from '../../composables/useTheme'
-
-const { isDark } = useTheme()
+import type { NeatConfig } from '@firecms/neat'
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const hasWebGLError = ref(false)
 let neatInstance: NeatGradient | null = null
-let animationFrameId: number | null = null
 
-const lightColors: NeatColor[] = [
-  { color: '#ffffff', enabled: true },
-  { color: '#faf5ff', enabled: true },
-  { color: '#f3e8ff', enabled: true },
-  { color: '#ede9fe', enabled: true },
-  { color: '#f5f3ff', enabled: true },
-]
-
-const darkColors: NeatColor[] = [
-  { color: '#000000', enabled: true },
-  { color: '#0f051c', enabled: true },
-  { color: '#1e0a36', enabled: true },
-  { color: '#2d0f50', enabled: true },
-  { color: '#18072c', enabled: true },
-]
-
-const currentX = ref(0.5)
-const currentY = ref(0.5)
-const targetX = ref(0.5)
-const targetY = ref(0.5)
-let lastInteractionTime = Date.now()
-let prefersReducedMotion = false
-
-const handleMouseMove = (event: MouseEvent) => {
-  if (prefersReducedMotion) return
-  const { clientX, clientY } = event
-  const width = window.innerWidth || 1
-  const height = window.innerHeight || 1
-
-  targetX.value = clientX / width
-  targetY.value = clientY / height
-  lastInteractionTime = Date.now()
+const config: NeatConfig = {
+  colors: [
+    {
+      color: '#000000',
+      enabled: true,
+    },
+    {
+      color: '#001129',
+      enabled: true,
+    },
+    {
+      color: '#0F0025',
+      enabled: true,
+    },
+    {
+      color: '#0F0814',
+      enabled: true,
+    },
+    {
+      color: '#001129',
+      enabled: true,
+    },
+  ],
+  speed: 5,
+  horizontalPressure: 4,
+  verticalPressure: 4,
+  waveFrequencyX: 3,
+  waveFrequencyY: 2,
+  waveAmplitude: 1,
+  secondaryWaveEnabled: false,
+  secondaryWaveFrequencyX: 3,
+  secondaryWaveFrequencyY: 3,
+  secondaryWaveAmplitude: 5,
+  secondaryWaveSpeed: 0.6,
+  secondaryWaveAngle: 1,
+  shadows: 2,
+  highlights: 2,
+  colorBrightness: 1,
+  colorSaturation: -3,
+  wireframe: false,
+  antialias: false,
+  colorBlending: 7,
+  backgroundColor: '#010101',
+  backgroundAlpha: 1,
+  grainScale: 6,
+  grainSparsity: 0.1,
+  grainIntensity: 0.125,
+  grainSpeed: 0.1,
+  resolution: 0.75,
+  yOffset: -480,
+  yOffsetWaveMultiplier: 2.2,
+  yOffsetColorMultiplier: 2.5,
+  yOffsetFlowMultiplier: 2.8,
+  flowDistortionA: 0.4,
+  flowDistortionB: 3,
+  flowScale: 3.3,
+  flowEase: 0.53,
+  flowEnabled: false,
+  enableProceduralTexture: false,
+  transparentTextureVoid: false,
+  textureMode: 'bitmap',
+  bakeEdgeSoftness: 1,
+  textureVoidLikelihood: 0.06,
+  textureVoidWidthMin: 10,
+  textureVoidWidthMax: 500,
+  textureBandDensity: 0.8,
+  textureColorBlending: 0.06,
+  textureSeed: 333,
+  textureEase: 0.68,
+  proceduralBackgroundColor: '#003FFF',
+  textureShapeTriangles: 20,
+  textureShapeCircles: 15,
+  textureShapeBars: 15,
+  textureShapeSquiggles: 10,
+  domainWarpEnabled: false,
+  domainWarpIntensity: 0,
+  domainWarpScale: 3,
+  vignetteIntensity: 0,
+  vignetteRadius: 0.8,
+  fresnelEnabled: false,
+  fresnelPower: 2,
+  fresnelIntensity: 0.5,
+  fresnelColor: '#FFFFFF',
+  iridescenceEnabled: false,
+  iridescenceIntensity: 0.5,
+  iridescenceSpeed: 1,
+  prismEdgeEnabled: false,
+  prismEdgeIntensity: 0.5,
+  prismEdgeThinness: 3,
+  prismEdgeSpread: 1,
+  prismEdgeSpeed: 0.5,
+  prismEdgeRipple: 1,
+  bloomIntensity: 0,
+  bloomThreshold: 0.7,
+  chromaticAberration: 0,
+  shapeType: 'plane',
+  shapeRotationX: 0,
+  shapeRotationY: 0,
+  shapeRotationZ: 0,
+  shapeAutoRotateSpeedX: 0,
+  shapeAutoRotateSpeedY: 0,
+  sphereRadius: 15,
+  torusRadius: 15,
+  torusTube: 5,
+  cylinderRadius: 10,
+  cylinderHeight: 40,
+  planeBend: 0,
+  planeTwist: 0,
+  silhouetteFade: 0.25,
+  cylinderFade: 0.08,
+  ribbonFade: 0.05,
+  flatShading: true,
+  cameraLock: true,
+  cameraX: 0,
+  cameraY: 0,
+  cameraZ: 0,
+  cameraRotationX: 0,
+  cameraRotationY: 0,
+  cameraRotationZ: 0,
+  cameraZoom: 1,
 }
 
-const handleTouchMove = (event: TouchEvent) => {
-  if (prefersReducedMotion || !event.touches[0]) return
-  const touch = event.touches[0]
-  const width = window.innerWidth || 1
-  const height = window.innerHeight || 1
-
-  targetX.value = touch.clientX / width
-  targetY.value = touch.clientY / height
-  lastInteractionTime = Date.now()
-}
-
-const updateAnimationLoop = () => {
-  if (!neatInstance) return
-
-  const now = Date.now()
-  const timeSinceInteraction = now - lastInteractionTime
-
-  if (prefersReducedMotion) {
-    neatInstance.speed = 0.6
-    neatInstance.waveAmplitude = 0.8
-    return
-  }
-
-  const lerpFactor = 0.035
-  currentX.value += (targetX.value - currentX.value) * lerpFactor
-  currentY.value += (targetY.value - currentY.value) * lerpFactor
-
-  const t = now * 0.0006
-  let ambientOffsetX = Math.sin(t) * 0.1
-  let ambientOffsetY = Math.cos(t * 0.8) * 0.1
-
-  if (timeSinceInteraction < 1500) {
-    ambientOffsetX *= 0.2
-    ambientOffsetY *= 0.2
-  }
-
-  const effectiveX = Math.min(Math.max(currentX.value + ambientOffsetX, 0.05), 0.95)
-  const effectiveY = Math.min(Math.max(currentY.value + ambientOffsetY, 0.05), 0.95)
-
-  try {
-    neatInstance.horizontalPressure = 2.0 + effectiveX * 2.0
-    neatInstance.verticalPressure = 1.8 + effectiveY * 1.8
-    neatInstance.waveAmplitude = 2.2 + Math.hypot(effectiveX - 0.5, effectiveY - 0.5) * 1.8
-    neatInstance.waveFrequencyX = 1.6 + effectiveX * 0.8
-    neatInstance.waveFrequencyY = 1.6 + effectiveY * 0.8
-  } catch {
-  }
-
-  animationFrameId = requestAnimationFrame(updateAnimationLoop)
-}
-
-const updatePalette = () => {
-  if (!neatInstance) return
-  try {
-    const isDarkTheme = isDark.value
-    neatInstance.colors = isDarkTheme ? darkColors : lightColors
-    neatInstance.backgroundColor = isDarkTheme ? '#000000' : '#ffffff'
-    neatInstance.colorBlending = isDarkTheme ? 6.5 : 5.0
-    neatInstance.colorBrightness = isDarkTheme ? 1.4 : 1.05
-    neatInstance.grainIntensity = isDarkTheme ? 0.03 : 0.015
-  } catch (err) {
-    console.warn('Erro ao atualizar paleta NEAT:', err)
+const handleScroll = () => {
+  if (neatInstance && typeof window !== 'undefined') {
+    neatInstance.yOffset = window.scrollY
   }
 }
-
-watch(isDark, () => {
-  updatePalette()
-})
 
 onMounted(() => {
   if (!canvasRef.value) return
 
-  if (typeof window !== 'undefined' && window.matchMedia) {
-    prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  }
-
   try {
-    const isDarkTheme = isDark.value
     neatInstance = new NeatGradient({
       ref: canvasRef.value,
-      colors: isDarkTheme ? darkColors : lightColors,
-      backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
-      speed: prefersReducedMotion ? 0.6 : 1.4,
-      horizontalPressure: 2.8,
-      verticalPressure: 2.6,
-      waveFrequencyX: 1.8,
-      waveFrequencyY: 1.8,
-      waveAmplitude: 2.5,
-      secondaryWaveEnabled: true,
-      secondaryWaveFrequencyX: 2.0,
-      secondaryWaveFrequencyY: 1.8,
-      secondaryWaveAmplitude: 2.4,
-      secondaryWaveSpeed: 0.6,
-      secondaryWaveAngle: 0.78,
-      shadows: isDarkTheme ? 3.5 : 1.5,
-      highlights: isDarkTheme ? 2.5 : 3.0,
-      colorSaturation: isDarkTheme ? 2.8 : 2.0,
-      colorBrightness: isDarkTheme ? 1.4 : 1.05,
-      colorBlending: isDarkTheme ? 6.5 : 5.0,
-      grainIntensity: isDarkTheme ? 0.03 : 0.015,
-      grainScale: 1.5,
-      grainSparsity: 0.1,
-      grainSpeed: 0.3,
-      renderScale: typeof window !== 'undefined' && window.devicePixelRatio > 1.5 ? 0.8 : 1,
+      ...config,
     })
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    window.addEventListener('touchmove', handleTouchMove, { passive: true })
-
-    animationFrameId = requestAnimationFrame(updateAnimationLoop)
+    window.addEventListener('scroll', handleScroll, { passive: true })
   } catch (err) {
     console.error('Falha ao inicializar o NEAT WebGL Gradient:', err)
     hasWebGLError.value = true
@@ -162,14 +152,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (animationFrameId !== null) {
-    cancelAnimationFrame(animationFrameId)
-    animationFrameId = null
-  }
-
   if (typeof window !== 'undefined') {
-    window.removeEventListener('mousemove', handleMouseMove)
-    window.removeEventListener('touchmove', handleTouchMove)
+    window.removeEventListener('scroll', handleScroll)
   }
 
   if (neatInstance) {
@@ -185,43 +169,24 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none transition-colors duration-1000"
+    class="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none"
     aria-hidden="true"
   >
     <canvas
       v-if="!hasWebGLError"
+      id="gradient"
       ref="canvasRef"
-      class="w-full h-full block opacity-85 dark:opacity-90 transition-opacity duration-1000"
+      class="w-full h-full block opacity-90 transition-opacity duration-1000"
+      style="width: 100%; height: 100%"
     ></canvas>
 
+    <!-- Fallback estático em caso de indisponibilidade de WebGL -->
     <div
       v-else
-      class="w-full h-full relative"
-      :class="isDark ? 'fallback-dark' : 'fallback-light'"
+      class="w-full h-full relative bg-[#010101]"
     >
-      <div
-        class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35"
-        :class="isDark ? 'bg-purple-950/40' : 'bg-purple-200/40'"
-      ></div>
-      <div
-        class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30"
-        :class="isDark ? 'bg-indigo-950/40' : 'bg-indigo-100/50'"
-      ></div>
+      <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35 bg-[#001129]/60"></div>
+      <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30 bg-[#0F0025]/60"></div>
     </div>
-
-    <div
-      class="absolute inset-0 pointer-events-none transition-opacity duration-700"
-      :class="isDark ? 'bg-black/30' : 'bg-white/40'"
-    ></div>
   </div>
 </template>
-
-<style scoped>
-.fallback-dark {
-  background: radial-gradient(circle at 50% 30%, #150827 0%, #000000 85%);
-}
-
-.fallback-light {
-  background: radial-gradient(circle at 50% 30%, #faf5ff 0%, #ffffff 85%);
-}
-</style>

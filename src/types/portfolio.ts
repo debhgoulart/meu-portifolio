@@ -26,11 +26,15 @@ export interface EducationItem {
 }
 
 export interface ExtracurricularItem {
+  id: string
   name: string
   badge: string
+  institution?: string
+  period?: string
   role?: string
   description: string
   topics: string[]
+  images: string[]
 }
 
 export interface SkillCategory {
@@ -47,9 +51,11 @@ export interface ProjectItem {
   id: string
   index?: string
   title: string
-  category: 'Full Stack' | 'Backend' | 'Frontend' | 'Acadêmico'
+  category: 'Full Stack' | 'Backend' | 'Frontend' | 'Acadêmico' | string
   description: string
   year?: string
+  date?: string
+  image?: string
   role?: string
   technologies: string[]
   githubUrl?: string
@@ -67,6 +73,7 @@ export interface PersonalInfo {
   shortBio: string
   aboutParagraphs: string[]
   location: string
+  phone: string
   coordinates: string
   status: string
   social: SocialLinks

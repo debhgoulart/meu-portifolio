@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Mail, Check, Copy, Linkedin, Github, MessageSquare, ArrowUpRight } from 'lucide-vue-next'
-import SectionHeading from '../common/SectionHeading.vue'
+import {
+  Mail,
+  Check,
+  Copy,
+  Linkedin,
+  Github,
+  ArrowUpRight,
+  Phone,
+} from 'lucide-vue-next'
 import { useContent } from '../../composables/useContent'
 
 const { content } = useContent()
@@ -21,47 +28,50 @@ const copyEmail = async () => {
 </script>
 
 <template>
-  <section id="contato" class="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 relative transition-colors duration-500">
-    <div class="max-w-5xl mx-auto">
-      <SectionHeading
-        tag="06 // CONTATO"
-        :title="content.ui.contactTitle"
-        :subtitle="content.ui.contactSubtitle"
-        :centered="true"
-      />
+  <section
+    id="contato"
+    class="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 relative transition-colors duration-500"
+  >
+    <div class="max-w-6xl mx-auto">
+      <!-- Cabeçalho da Seção Alinhado à Esquerda -->
+      <div class="mb-12 md:mb-16">
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white leading-tight">
+          {{ content.ui.contactTitle || 'Iniciar Conexão' }}
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed max-w-2xl">
+          {{ content.ui.contactSubtitle }}
+        </p>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-        <div
-          class="md:col-span-7 glass-card p-6 sm:p-10 flex flex-col justify-between font-sans"
-        >
-          <div>
-            <div class="p-3 rounded-xl bg-white/40 dark:bg-white/5 text-zinc-900 dark:text-zinc-100 w-fit border border-white/40 dark:border-white/10 backdrop-blur-md mb-6">
-              <MessageSquare class="w-6 h-6" />
-            </div>
+      <!-- Card Unificado de Contato com Divisão Vertical -->
+      <div class="glass-card rounded-3xl border border-white/20 dark:border-white/10 overflow-hidden shadow-2xl transition-all duration-500 relative">
+        <!-- Linha divisória vertical sutil no desktop (com recuo superior e inferior) -->
+        <div class="hidden lg:block absolute left-1/2 top-10 bottom-10 w-px -translate-x-1/2 bg-zinc-200/60 dark:bg-zinc-800/60 pointer-events-none"></div>
 
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 dark:text-white tracking-tight mb-2">
-              {{ content.ui.contactTitle }}
-            </h3>
-
-            <p class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6 font-normal">
-              {{ content.ui.contactSubtitle }}
-            </p>
-
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+          <!-- Lado Esquerdo: E-mail e WhatsApp -->
+          <div class="p-7 sm:p-10 lg:p-12 flex flex-col justify-center gap-4 font-sans">
+            <!-- Card de E-mail com Copiar e Abrir -->
             <div
-              class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 backdrop-blur-md font-mono"
+              class="p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 font-mono transition-all duration-300 hover:border-white/60 dark:hover:border-white/30"
             >
-              <div class="flex items-center gap-2.5 px-2 truncate">
-                <Mail class="w-4 h-4 text-zinc-500 shrink-0" />
-                <span class="text-xs sm:text-sm text-zinc-950 dark:text-zinc-100 font-bold truncate">
-                  {{ content.personalInfo.social.email }}
-                </span>
+              <div class="flex items-center gap-3 truncate">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md shrink-0">
+                  <Mail class="w-5 h-5" />
+                </div>
+                <div class="truncate">
+                  <span class="text-xs text-zinc-500 dark:text-zinc-400 block font-sans font-medium">E-mail</span>
+                  <span class="text-xs sm:text-sm text-zinc-950 dark:text-zinc-100 font-bold truncate block">
+                    {{ content.personalInfo.social.email }}
+                  </span>
+                </div>
               </div>
 
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                 <button
                   type="button"
                   @click="copyEmail"
-                  class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
                   :class="
                     copied
                       ? 'bg-emerald-600 text-white'
@@ -76,76 +86,88 @@ const copyEmail = async () => {
 
                 <a
                   :href="'mailto:' + content.personalInfo.social.email"
-                  class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-colors shadow-sm"
+                  class="inline-flex items-center justify-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-colors shadow-sm"
                 >
                   <span>{{ content.ui.openBtn }}</span>
                   <ArrowUpRight class="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>
+
+            <!-- Card WhatsApp -->
+            <a
+              :href="'https://wa.me/5521965991791'"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-white/60 dark:hover:border-white/30 transition-all duration-300 hover:scale-[1.01] cursor-pointer block"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs uppercase tracking-wider text-zinc-950 dark:text-white font-mono font-bold flex items-center gap-2">
+                  <Phone class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
+                  <span>WhatsApp // Mensagem Direta</span>
+                </span>
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              </div>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 font-sans mb-1.5">
+                Disponível para contato direto e retorno rápido.
+              </p>
+              <div class="flex items-center justify-between text-xs font-mono font-bold text-zinc-950 dark:text-white">
+                <span>{{ content.personalInfo.phone }}</span>
+                <ArrowUpRight class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
+            </a>
           </div>
 
-          <div class="mt-8 pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 font-mono text-xs text-zinc-500 dark:text-zinc-400 flex items-center justify-between">
-            <span>{{ content.ui.responseTime }}</span>
-            <span>RIO // GMT-3</span>
-          </div>
-        </div>
+          <!-- Linha horizontal suave no mobile (com recuo lateral) -->
+          <div class="block lg:hidden mx-8 h-px bg-zinc-200/60 dark:bg-zinc-800/60"></div>
 
-        <div class="md:col-span-5 flex flex-col gap-4 justify-between font-sans">
-          <a
-            :href="content.personalInfo.social.linkedin"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group p-6 glass-card hover:scale-[1.01] flex items-center justify-between cursor-pointer"
-          >
-            <div class="flex items-center gap-4">
-              <div class="p-3 rounded-xl bg-white/40 dark:bg-white/5 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-105 transition-transform">
-                <Linkedin class="w-5 h-5" />
+          <!-- Lado Direito: LinkedIn e GitHub -->
+          <div class="p-7 sm:p-10 lg:p-12 flex flex-col justify-center gap-4 font-sans bg-white/[0.02] dark:bg-black/20">
+            <!-- Card LinkedIn -->
+            <a
+              :href="content.personalInfo.social.linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-white/60 dark:hover:border-white/30 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.01]"
+            >
+              <div class="flex items-center gap-4">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-110 transition-transform">
+                  <Linkedin class="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="text-base font-bold text-zinc-950 dark:text-white transition-colors">
+                    LinkedIn
+                  </h4>
+                  <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                    /in/deborahgoulart
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 class="text-base font-bold text-zinc-950 dark:text-white transition-colors">
-                  LinkedIn [↗]
-                </h4>
-                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-                  /in/debhgoulart
-                </p>
-              </div>
-            </div>
-            <ArrowUpRight class="w-5 h-5 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
-          </a>
+              <ArrowUpRight class="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            </a>
 
-          <a
-            :href="content.personalInfo.social.github"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group p-6 glass-card hover:scale-[1.01] flex items-center justify-between cursor-pointer"
-          >
-            <div class="flex items-center gap-4">
-              <div class="p-3 rounded-xl bg-white/40 dark:bg-white/5 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-105 transition-transform">
-                <Github class="w-5 h-5" />
+            <!-- Card GitHub -->
+            <a
+              :href="content.personalInfo.social.github"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group p-5 rounded-2xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 hover:border-white/60 dark:hover:border-white/30 flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-[1.01]"
+            >
+              <div class="flex items-center gap-4">
+                <div class="p-3 rounded-xl bg-white/60 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 border border-white/40 dark:border-white/10 backdrop-blur-md group-hover:scale-110 transition-transform">
+                  <Github class="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="text-base font-bold text-zinc-950 dark:text-white transition-colors">
+                    GitHub
+                  </h4>
+                  <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                    @debhgoulart
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 class="text-base font-bold text-zinc-950 dark:text-white transition-colors">
-                  GitHub [↗]
-                </h4>
-                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-                  @debhgoulart
-                </p>
-              </div>
-            </div>
-            <ArrowUpRight class="w-5 h-5 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
-          </a>
-
-          <div class="p-6 glass-card font-mono">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs uppercase tracking-wider text-zinc-950 dark:text-white font-bold">
-                [ CONTATO // DIRETO ]
-              </span>
-              <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-            </div>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400">
-              Aberta a desafios em engenharia de software e desenvolvimento de soluções corporativas escaláveis.
-            </p>
+              <ArrowUpRight class="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            </a>
           </div>
         </div>
       </div>

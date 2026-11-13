@@ -3,252 +3,158 @@ import { ref, computed } from 'vue'
 import {
   Github,
   ExternalLink,
-  Cpu,
-  ArrowUpRight,
+  Calendar,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-vue-next'
 import { useContent } from '../../composables/useContent'
 
 const { content } = useContent()
 
-const viewMode = ref<'project' | 'index'>('project')
-const selectedCategory = ref<string>('all')
+// Controle de exibição: começa com 3, libera mais 2 a cada clique
+const visibleCount = ref(3)
 
-const categories = computed(() => {
-  return [
-    { id: 'all', label: content.value.ui.allCategories },
-    { id: 'Full Stack', label: 'Full Stack' },
-    { id: 'Backend', label: 'Backend' },
-    { id: 'Frontend', label: 'Frontend' },
-  ]
+const visibleProjects = computed(() => {
+  return content.value.projects.slice(0, visibleCount.value)
 })
 
-const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'all') {
-    return content.value.projects
-  }
-  return content.value.projects.filter((p) => p.category === selectedCategory.value)
-})
+const showMore = () => {
+  visibleCount.value = Math.min(visibleCount.value + 2, content.value.projects.length)
+}
 
-const getCategoryCount = (catId: string) => {
-  if (catId === 'all') return content.value.projects.length
-  return content.value.projects.filter((p) => p.category === catId).length
+const showLess = () => {
+  visibleCount.value = 3
 }
 </script>
 
 <template>
-  <section id="projetos" class="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 relative transition-colors duration-500">
+  <section
+    id="projetos"
+    class="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 relative transition-colors duration-500"
+  >
     <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-zinc-200/60 dark:border-zinc-800/60 mb-12">
-        <div>
-          <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-2">
-            [ 05 // WORK ARCHIVE ]
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
-            Sistemas & Projetos
-          </h2>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-3">
-          <div class="flex items-center gap-1 text-xs font-mono">
-            <button
-              v-for="cat in categories"
-              :key="cat.id"
-              type="button"
-              @click="selectedCategory = cat.id"
-              class="px-3 py-1.5 rounded-md transition-colors cursor-pointer"
-              :class="
-                selectedCategory === cat.id
-                  ? 'text-zinc-950 dark:text-white font-bold bg-white/40 dark:bg-white/10 border border-white/40 dark:border-white/20 backdrop-blur-md shadow-sm'
-                  : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200'
-              "
-            >
-              {{ cat.label }} [{{ getCategoryCount(cat.id) }}]
-            </button>
-          </div>
-
-          <div class="h-4 w-px bg-zinc-300 dark:bg-zinc-800 hidden sm:block"></div>
-
-          <div class="flex items-center gap-1 text-xs font-mono border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/5 backdrop-blur-md p-1 rounded-md">
-            <button
-              type="button"
-              @click="viewMode = 'project'"
-              class="px-3 py-1.5 rounded-md text-[11px] font-semibold transition-colors cursor-pointer"
-              :class="
-                viewMode === 'project'
-                  ? 'bg-zinc-950 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm'
-                  : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100'
-              "
-            >
-              {{ content.ui.projectView }}
-            </button>
-
-            <button
-              type="button"
-              @click="viewMode = 'index'"
-              class="px-3 py-1.5 rounded-md text-[11px] font-semibold transition-colors cursor-pointer"
-              :class="
-                viewMode === 'index'
-                  ? 'bg-zinc-950 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm'
-                  : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100'
-              "
-            >
-              {{ content.ui.indexView }}
-            </button>
-          </div>
-        </div>
+      <!-- Título Limpo sem subtítulo e sem tag numerada -->
+      <div class="mb-16 md:mb-20">
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white leading-tight">
+          {{ content.ui.projectsTitle || 'Projetos em Destaque' }}
+        </h2>
       </div>
 
-      <div v-if="viewMode === 'project'" class="space-y-12 sm:space-y-16">
+      <!-- Lista de Projetos (Layout Editorial inspirado no Print 1) -->
+      <div class="space-y-16 sm:space-y-24">
         <article
-          v-for="project in filteredProjects"
+          v-for="project in visibleProjects"
           :key="project.id"
-          class="glass-card p-6 sm:p-10 space-y-8"
+          class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center pb-16 sm:pb-24 border-b border-zinc-200/60 dark:border-zinc-800/60 last:border-b-0 transition-all duration-500"
         >
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs text-zinc-500 dark:text-zinc-400 border-b border-zinc-200/50 dark:border-zinc-800/60 pb-4">
-            <div class="flex items-center gap-3">
-              <span class="font-bold text-zinc-950 dark:text-white">[{{ project.index || '01' }}]</span>
-              <span class="uppercase tracking-wider">{{ project.title }}</span>
-            </div>
-            <div class="flex items-center gap-4">
-              <span class="px-2.5 py-1 rounded-md bg-white/30 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 border border-white/30 dark:border-white/10 backdrop-blur-md">
-                {{ project.category }}
-              </span>
-              <span>{{ project.year || '2024' }}</span>
+          <!-- Coluna Esquerda: Preview / Ilustração / Imagem Demo -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-md aspect-[16/11] rounded-2xl overflow-hidden glass-card p-2 border border-white/30 dark:border-white/10 group shadow-2xl">
+              <div class="w-full h-full rounded-xl overflow-hidden relative bg-zinc-950/40">
+                <img
+                  :src="project.image || '/images/projects/project-demo.jpg'"
+                  :alt="project.title"
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
+
+                <div class="absolute bottom-3 left-3 flex items-center gap-2">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/20">
+                    {{ project.category }}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div class="lg:col-span-8 space-y-6">
-              <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
-                {{ project.title }}
-              </h3>
+          <!-- Coluna Direita: Título com ponto acentuado, Narrativa, Stack e Botões -->
+          <div class="lg:col-span-7 space-y-5">
+            <!-- Meta: Apenas Data e Categoria, sem [01] e sem indicativos Corporativo // MVP -->
+            <div class="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              <Calendar class="w-3.5 h-3.5" />
+              <span>{{ project.date || project.year }}</span>
+              <span>•</span>
+              <span class="text-zinc-700 dark:text-zinc-300 font-medium">{{ project.category }}</span>
+            </div>
 
-              <p class="text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+            <!-- Título com ponto acentuado preto/branco (estilo Print 1) -->
+            <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white leading-tight">
+              {{ project.title }}<span class="text-zinc-400 dark:text-zinc-500">.</span>
+            </h3>
+
+            <!-- Parágrafos de Narrativa Técnica -->
+            <div class="space-y-3 text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+              <p>
                 {{ project.description }}
               </p>
+            </div>
 
-              <div v-if="project.architecture && project.architecture.length > 0" class="pt-4 space-y-3">
-                <span class="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold flex items-center gap-1.5">
-                  <Cpu class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" />
-                  Arquitetura & Engenharia de Software
+            <!-- Tecnologias Utilizadas -->
+            <div class="pt-2">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tech in project.technologies"
+                  :key="tech"
+                  class="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-white/50 dark:bg-white/5 text-zinc-800 dark:text-zinc-200 border border-white/40 dark:border-white/10 backdrop-blur-md"
+                >
+                  {{ tech }}
                 </span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div
-                    v-for="(arch, idx) in project.architecture"
-                    :key="idx"
-                    class="p-3.5 rounded-xl border border-white/30 dark:border-white/10 bg-white/30 dark:bg-white/5 backdrop-blur-md text-xs font-mono text-zinc-800 dark:text-zinc-200 flex items-start gap-2.5"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-zinc-100 mt-1.5 shrink-0"></span>
-                    <span class="leading-relaxed">{{ arch }}</span>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <div class="lg:col-span-4 space-y-6 lg:border-l lg:border-zinc-200/60 dark:lg:border-zinc-800/60 lg:pl-8">
-              <div class="space-y-1">
-                <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
-                  Escopo / Função
-                </span>
-                <p class="text-sm font-bold text-zinc-950 dark:text-white">
-                  {{ project.role || 'Engenharia Full Stack' }}
-                </p>
-              </div>
+            <!-- Botões Estilizados (Preto e Branco) -->
+            <div class="pt-4 flex flex-wrap items-center gap-3.5 text-xs font-mono">
+              <a
+                v-if="project.githubUrl"
+                :href="project.githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 border-2 border-zinc-300 dark:border-zinc-700 hover:border-zinc-950 dark:hover:border-white hover:bg-white/30 dark:hover:bg-white/10 backdrop-blur-md transition-all duration-200 cursor-pointer shadow-sm hover:scale-[1.02]"
+                :aria-label="'Ver ' + project.title + ' no GitHub'"
+              >
+                <Github class="w-4 h-4" />
+                <span>{{ content.ui.viewGithub }}</span>
+              </a>
 
-              <div class="space-y-2">
-                <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
-                  Stack Tecnológica
-                </span>
-                <div class="flex flex-wrap gap-1.5">
-                  <span
-                    v-for="tech in project.technologies"
-                    :key="tech"
-                    class="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-white/30 dark:bg-white/5 text-zinc-800 dark:text-zinc-200 border border-white/30 dark:border-white/10 backdrop-blur-md"
-                  >
-                    {{ tech }}
-                  </span>
-                </div>
-              </div>
-
-              <div v-if="project.metrics" class="space-y-1">
-                <span class="font-mono text-xs uppercase text-zinc-500 dark:text-zinc-400 block">
-                  Contexto Institucional
-                </span>
-                <p class="text-xs font-mono text-zinc-700 dark:text-zinc-300">
-                  {{ project.metrics }}
-                </p>
-              </div>
-
-              <div class="pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 flex flex-col gap-2.5 font-mono text-xs">
-                <a
-                  v-if="project.githubUrl"
-                  :href="project.githubUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-between w-full py-3 px-4 rounded-lg font-bold uppercase bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 transition-colors shadow-sm cursor-pointer"
-                >
-                  <span class="flex items-center gap-2">
-                    <Github class="w-4 h-4" />
-                    {{ content.ui.viewGithub }}
-                  </span>
-                  <ArrowUpRight class="w-4 h-4" />
-                </a>
-
-                <a
-                  v-if="project.liveUrl && project.liveUrl !== '#'"
-                  :href="project.liveUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-between w-full py-2.5 px-4 rounded-lg font-bold uppercase border border-zinc-300 dark:border-zinc-700 bg-white/20 dark:bg-white/5 backdrop-blur-md text-zinc-950 dark:text-zinc-100 hover:border-zinc-950 dark:hover:border-zinc-100 transition-colors cursor-pointer"
-                >
-                  <span>{{ content.ui.viewDemo }}</span>
-                  <ExternalLink class="w-4 h-4" />
-                </a>
-              </div>
+              <a
+                v-if="project.liveUrl"
+                :href="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase tracking-wider bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white transition-all duration-200 cursor-pointer shadow-md hover:scale-[1.02]"
+                :aria-label="'Ver demonstração online de ' + project.title"
+              >
+                <span>{{ content.ui.viewDemo }}</span>
+                <ExternalLink class="w-4 h-4" />
+              </a>
             </div>
           </div>
         </article>
       </div>
 
-      <div v-else class="space-y-0 border-t border-zinc-200/60 dark:border-zinc-800/60">
-        <div
-          v-for="project in filteredProjects"
-          :key="project.id"
-          class="border-b border-zinc-200/60 dark:border-zinc-800/60 py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:bg-white/20 dark:hover:bg-white/5 px-4 rounded-lg transition-colors"
+      <!-- Botões de Ação: Ver Mais e Ver Menos -->
+      <div class="mt-16 flex items-center justify-center gap-4">
+        <button
+          v-if="visibleCount < content.projects.length"
+          type="button"
+          @click="showMore"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-white border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
         >
-          <div class="flex items-center gap-4 sm:gap-6 min-w-0">
-            <span class="font-mono text-xs sm:text-sm font-bold text-zinc-500">
-              [{{ project.index || '01' }}]
-            </span>
-            <div class="space-y-1 min-w-0">
-              <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-white truncate">
-                {{ project.title }}
-              </h3>
-              <p class="font-mono text-xs text-zinc-500 truncate">
-                {{ project.technologies.join(' • ') }}
-              </p>
-            </div>
-          </div>
+          <span>Ver mais</span>
+          <ChevronDown class="w-4 h-4" />
+        </button>
 
-          <div class="flex items-center gap-4 font-mono text-xs shrink-0">
-            <span class="text-zinc-500 hidden md:inline-block">
-              {{ project.year }}
-            </span>
-            <span class="px-2.5 py-1 rounded-md bg-white/30 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 border border-white/30 dark:border-white/10 backdrop-blur-md">
-              {{ project.category }}
-            </span>
-            <a
-              v-if="project.githubUrl"
-              :href="project.githubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:border-zinc-950 dark:hover:border-zinc-100 transition-colors"
-              :aria-label="'Ver ' + project.title + ' no GitHub'"
-            >
-              <ArrowUpRight class="w-4 h-4" />
-            </a>
-          </div>
-        </div>
+        <button
+          v-if="visibleCount > 3"
+          type="button"
+          @click="showLess"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-white border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+        >
+          <span>Ver menos</span>
+          <ChevronUp class="w-4 h-4" />
+        </button>
       </div>
     </div>
   </section>

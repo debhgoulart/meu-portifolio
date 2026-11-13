@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowUp, Github, Linkedin, Mail } from 'lucide-vue-next'
+import { Github, Linkedin, Mail } from 'lucide-vue-next'
 import { useContent } from '../../composables/useContent'
 
 const { content } = useContent()
 const currentYear = computed(() => new Date().getFullYear())
 
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
 </script>
 
 <template>
@@ -51,18 +48,6 @@ const scrollToTop = () => {
         >
           <Mail class="w-4 h-4" />
         </a>
-
-        <div class="h-4 w-px bg-zinc-300 dark:bg-zinc-800 mx-1"></div>
-
-        <button
-          type="button"
-          @click="scrollToTop"
-          aria-label="Voltar ao início da página"
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-zinc-800 bg-white/30 dark:bg-white/5 backdrop-blur-md transition-colors cursor-pointer uppercase font-bold text-[10px]"
-        >
-          <span>TOP</span>
-          <ArrowUp class="w-3.5 h-3.5" />
-        </button>
       </div>
     </div>
   </footer>

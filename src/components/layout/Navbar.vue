@@ -7,7 +7,7 @@ import { useContent } from '../../composables/useContent'
 const { content, currentLang, setLanguage } = useContent()
 const isMobileMenuOpen = ref(false)
 
-const sectionIds = ['hero', 'sobre', 'experiencia', 'formacao', 'habilidades', 'projetos', 'contato']
+const sectionIds = ['hero', 'habilidades', 'projetos', 'extracurriculares', 'contato']
 const { activeSection } = useScrollSpy(sectionIds, 120)
 
 const closeMobileMenu = () => {
@@ -29,10 +29,10 @@ const scrollToSection = (e: MouseEvent, href: string) => {
 
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 pointer-events-none select-none transition-colors duration-300"
+    class="fixed top-0 left-0 right-0 z-50 pointer-events-none select-none transition-colors duration-300 px-6 sm:px-10 lg:px-12 py-6 sm:py-8"
   >
     <div
-      class="w-full px-6 sm:px-10 lg:px-12 py-6 sm:py-8 flex items-center justify-between"
+      class="max-w-6xl mx-auto w-full flex items-center justify-between"
     >
       <div class="flex items-center gap-4 sm:gap-6 pointer-events-auto">
         <a
