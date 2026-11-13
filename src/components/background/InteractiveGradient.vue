@@ -173,7 +173,7 @@ const lightConfig: NeatConfig = {
   wireframe: false,
   antialias: false,
   colorBlending: 7,
-  backgroundColor: '#00A2FF',
+  backgroundColor: '#FFFFFF',
   backgroundAlpha: 1,
   grainScale: 4,
   grainSparsity: 0.06,
@@ -200,7 +200,7 @@ const lightConfig: NeatConfig = {
   textureColorBlending: 0.06,
   textureSeed: 333,
   textureEase: 0.48,
-  proceduralBackgroundColor: '#003FFF',
+  proceduralBackgroundColor: '#FFFFFF',
   textureShapeTriangles: 20,
   textureShapeCircles: 15,
   textureShapeBars: 15,
@@ -314,6 +314,7 @@ onUnmounted(() => {
 <template>
   <div
     class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none"
+    :class="isDark ? 'bg-black' : 'bg-white'"
     aria-hidden="true"
   >
     <canvas
@@ -328,15 +329,11 @@ onUnmounted(() => {
     <div
       v-else
       class="w-full h-full relative"
-      :class="isDark ? 'bg-[#010101]' : 'bg-[#f8fafc]'"
+      :class="isDark ? 'bg-[#010101]' : 'bg-white'"
     >
       <template v-if="isDark">
         <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35 bg-[#001129]/60"></div>
         <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30 bg-[#0F0025]/60"></div>
-      </template>
-      <template v-else>
-        <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-40 bg-[#D5ECEB]/70"></div>
-        <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-40 bg-[#EFE2CE]/70"></div>
       </template>
     </div>
   </div>
