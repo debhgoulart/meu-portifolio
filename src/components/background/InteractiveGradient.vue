@@ -134,77 +134,73 @@ const darkConfig: NeatConfig = {
 const lightConfig: NeatConfig = {
   colors: [
     {
-      color: '#90A6C9',
+      color: '#97E9FF',
       enabled: true,
     },
     {
-      color: '#82A5AD',
+      color: '#DAEEFF',
       enabled: true,
     },
     {
-      color: '#bfd7ea',
+      color: '#D5ECEB',
       enabled: true,
     },
     {
-      color: '#FFFFFF',
-      enabled: true,
+      color: '#E4E4E4',
+      enabled: false,
     },
     {
-      color: '#BEDBFF',
-      enabled: true,
-    },
-    {
-      color: '#D5BCFF',
+      color: '#F6F6FF',
       enabled: false,
     },
   ],
   speed: 4,
   horizontalPressure: 4,
-  verticalPressure: 3,
-  waveFrequencyX: 0,
-  waveFrequencyY: 0,
-  waveAmplitude: 0,
+  verticalPressure: 5,
+  waveFrequencyX: 1,
+  waveFrequencyY: 2,
+  waveAmplitude: 10,
   secondaryWaveEnabled: false,
   secondaryWaveFrequencyX: 3,
   secondaryWaveFrequencyY: 3,
   secondaryWaveAmplitude: 5,
   secondaryWaveSpeed: 0.6,
   secondaryWaveAngle: 1,
-  shadows: 2,
+  shadows: 4,
   highlights: 7,
   colorBrightness: 1,
-  colorSaturation: 8,
+  colorSaturation: 0,
   wireframe: false,
   antialias: false,
-  colorBlending: 5,
-  backgroundColor: '#FF0000',
+  colorBlending: 7,
+  backgroundColor: '#00A2FF',
   backgroundAlpha: 1,
-  grainScale: 0,
+  grainScale: 4,
   grainSparsity: 0,
-  grainIntensity: 0,
-  grainSpeed: 0,
-  resolution: 0.5,
-  yOffset: -120,
-  yOffsetWaveMultiplier: 1.5,
-  yOffsetColorMultiplier: 1.8,
-  yOffsetFlowMultiplier: 2,
-  flowDistortionA: 5,
-  flowDistortionB: 7.7,
-  flowScale: 2.6,
-  flowEase: 0.36,
-  flowEnabled: false,
+  grainIntensity: 0.2,
+  grainSpeed: 2.2,
+  resolution: 0.65,
+  yOffset: 240,
+  yOffsetWaveMultiplier: 5,
+  yOffsetColorMultiplier: 4.5,
+  yOffsetFlowMultiplier: 5.5,
+  flowDistortionA: 0.4,
+  flowDistortionB: 3,
+  flowScale: 3.3,
+  flowEase: 0.53,
+  flowEnabled: true,
   enableProceduralTexture: false,
   transparentTextureVoid: false,
   textureMode: 'bitmap',
   bakeEdgeSoftness: 1,
-  textureVoidLikelihood: 0.22,
-  textureVoidWidthMin: 120,
-  textureVoidWidthMax: 150,
-  textureBandDensity: 1.9,
-  textureColorBlending: 0.12,
+  textureVoidLikelihood: 0.06,
+  textureVoidWidthMin: 10,
+  textureVoidWidthMax: 500,
+  textureBandDensity: 0.8,
+  textureColorBlending: 0.06,
   textureSeed: 333,
-  textureEase: 0.75,
-  proceduralBackgroundColor: '#D0DBFB',
+  textureEase: 0.48,
+  proceduralBackgroundColor: '#003FFF',
   textureShapeTriangles: 20,
   textureShapeCircles: 15,
   textureShapeBars: 15,
@@ -281,7 +277,9 @@ const initNeat = () => {
       ref: canvasRef.value,
       ...currentConfig,
     })
-    neatInstance.yOffset = window.scrollY
+    if (typeof window !== 'undefined' && window.scrollY > 0) {
+      neatInstance.yOffset = window.scrollY
+    }
   } catch (err) {
     console.error('Falha ao inicializar o NEAT WebGL Gradient:', err)
     hasWebGLError.value = true
@@ -318,7 +316,7 @@ onUnmounted(() => {
 <template>
   <div
     class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none"
-    :class="isDark ? 'bg-[#000E2B]' : 'bg-[#bfd7ea]'"
+    :class="isDark ? 'bg-[#000E2B]' : 'bg-[#DAEEFF]'"
     aria-hidden="true"
   >
     <canvas
@@ -333,15 +331,15 @@ onUnmounted(() => {
     <div
       v-else
       class="w-full h-full relative"
-      :class="isDark ? 'bg-[#000E2B]' : 'bg-[#bfd7ea]'"
+      :class="isDark ? 'bg-[#000E2B]' : 'bg-[#DAEEFF]'"
     >
       <template v-if="isDark">
         <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35 bg-[#0B0D4E]/60"></div>
         <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30 bg-[#00A2FF]/30"></div>
       </template>
       <template v-else>
-        <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35 bg-[#90A6C9]/60"></div>
-        <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30 bg-[#BEDBFF]/60"></div>
+        <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full blur-3xl opacity-35 bg-[#97E9FF]/60"></div>
+        <div class="absolute top-[30%] -right-[10%] w-[50vw] h-[50vw] rounded-full blur-3xl opacity-30 bg-[#DAEEFF]/60"></div>
       </template>
     </div>
   </div>
