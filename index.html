@@ -46,8 +46,22 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('debhg_theme_preference');
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-black text-zinc-50 min-h-screen antialiased">
+  <body class="bg-white text-zinc-950 dark:bg-black dark:text-zinc-50 min-h-screen antialiased transition-colors duration-500">
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

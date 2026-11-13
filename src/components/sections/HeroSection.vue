@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import {
   Download,
   ArrowUpRight,
@@ -7,7 +8,19 @@ import {
 } from 'lucide-vue-next'
 import { useContent } from '../../composables/useContent'
 
-const { content } = useContent()
+const { content, currentLang } = useContent()
+
+const cvHref = computed(() => {
+  return currentLang.value === 'en'
+    ? '/curriculo/curriculo-en.pdf'
+    : '/curriculo/curriculo.pdf'
+})
+
+const cvDownloadName = computed(() => {
+  return currentLang.value === 'en'
+    ? 'resume-deborah-goulart.pdf'
+    : 'curriculo-deborah-goulart.pdf'
+})
 
 const scrollToSection = (e: MouseEvent, targetId: string) => {
   e.preventDefault()
@@ -43,15 +56,16 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
         </div>
 
         <p
+          v-if="content.personalInfo.subtitle"
           class="text-lg sm:text-2xl text-zinc-700 dark:text-zinc-300 font-normal leading-relaxed max-w-3xl pt-2"
         >
           {{ content.personalInfo.subtitle }}
         </p>
       </div>
 
-      <!-- Descrição Concisa -->
-      <div class="max-w-2xl mb-10">
-        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+      <!-- Bio / Descrição -->
+      <div class="max-w-3xl mb-10">
+        <p class="text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
           {{ content.personalInfo.shortBio }}
         </p>
       </div>
@@ -70,8 +84,8 @@ const scrollToSection = (e: MouseEvent, targetId: string) => {
 
         <!-- CTA Secundário: Baixar Currículo em PDF -->
         <a
-          href="/curriculo/curriculo.pdf"
-          download="curriculo-deborah-goulart.pdf"
+          :href="cvHref"
+          :download="cvDownloadName"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-5 py-3 rounded-lg uppercase tracking-wider font-bold border border-zinc-300 dark:border-zinc-800 text-zinc-950 dark:text-zinc-100 hover:border-zinc-950 dark:hover:border-zinc-100 bg-white/40 dark:bg-black/30 backdrop-blur-md transition-all duration-200 cursor-pointer hover:scale-[1.02]"

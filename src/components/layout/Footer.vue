@@ -9,7 +9,7 @@ const currentYear = computed(() => new Date().getFullYear())
 </script>
 
 <template>
-  <footer class="border-t border-zinc-200/60 dark:border-zinc-800/60 py-12 px-6 sm:px-10 lg:px-12 relative font-mono text-xs transition-colors duration-500">
+  <footer class="border-t border-zinc-200/60 dark:border-zinc-800/60 py-12 px-6 sm:px-10 lg:px-12 relative z-10 font-mono text-xs transition-colors duration-500">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="space-y-1 text-center sm:text-left">
         <p class="font-sans font-bold text-sm text-zinc-950 dark:text-white">

@@ -140,7 +140,7 @@ const showLess = () => {
           v-if="visibleCount < content.projects.length"
           type="button"
           @click="showMore"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-white border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-white/20 hover:border-zinc-950 dark:hover:border-white/60 hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
         >
           <span>Ver mais</span>
           <ChevronDown class="w-4 h-4" />
@@ -150,7 +150,7 @@ const showLess = () => {
           v-if="visibleCount > 3"
           type="button"
           @click="showLess"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-white border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-transparent text-zinc-900 dark:text-white border border-zinc-300 dark:border-white/20 hover:border-zinc-950 dark:hover:border-white/60 hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
         >
           <span>Ver menos</span>
           <ChevronUp class="w-4 h-4" />

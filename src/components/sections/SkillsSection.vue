@@ -127,7 +127,7 @@ const getCategoryIcon = (category: string) => {
               :key="skill.name"
               class="flex items-center gap-3 p-2 rounded-lg text-xs font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/5 transition-colors group/item"
             >
-              <div class="p-1.5 rounded-md bg-white/10 text-zinc-900 dark:text-zinc-200 group-hover/item:bg-white/20 group-hover/item:text-white shrink-0 transition-colors">
+              <div class="p-1.5 rounded-md bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-zinc-200 group-hover/item:bg-black/10 dark:group-hover/item:bg-white/20 group-hover/item:text-zinc-950 dark:group-hover/item:text-white shrink-0 transition-colors">
                 <component :is="getSkillIcon(skill.name)" class="w-3.5 h-3.5" />
               </div>
               <span class="truncate font-medium">{{ skill.name }}</span>

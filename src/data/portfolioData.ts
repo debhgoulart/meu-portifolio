@@ -53,9 +53,9 @@ export const contentPT: LocalizedContent = {
   personalInfo: {
     name: 'Deborah Goulart',
     title: 'Desenvolvedora Full Stack',
-    subtitle: 'Ênfase em arquitetura backend, ecossistema Java/Spring Boot e interfaces modernas reativas.',
+    subtitle: '',
     shortBio:
-      'Estudante de Ciência da Computação na Universidade Veiga de Almeida (CR 8,9) e estagiária de desenvolvimento de software no CREA-RJ. Foco em arquitetura de microsserviços, modelagem de bancos de dados relacionais e sistemas corporativos robustos.',
+      'Curiosa por tecnologia e desenvolvimento de software, gosto de entender problemas e transformá-los em soluções práticas. Minha atuação envolve desenvolvimento Full Stack, com experiência em Java, Spring Boot, Vue.js e bancos de dados relacionais, sempre buscando aprender novas tecnologias e aprimorar a forma como construo aplicações.',
     aboutParagraphs: [
       'Sou estudante de Ciência da Computação na Universidade Veiga de Almeida (CR 8,9) e atuo como estagiária de desenvolvimento de software no CREA-RJ, onde participo da construção, sustentação e modernização de ecossistemas corporativos de alta demanda.',
       'Minha principal dedicação está no desenvolvimento backend, arquitetura de APIs e bancos de dados relacionais. No meu dia a dia, trabalho com Java, Spring Boot, PostgreSQL, Oracle, modelagem relacional e conteinerização com Docker, além de construir interfaces reativas e intuitivas utilizando Vue.js e TypeScript.',
@@ -358,9 +358,9 @@ export const contentEN: LocalizedContent = {
   personalInfo: {
     name: 'Deborah Goulart',
     title: 'Full Stack Developer',
-    subtitle: 'Emphasis on backend architecture, Java/Spring Boot ecosystem, and modern reactive interfaces.',
+    subtitle: '',
     shortBio:
-      'Computer Science undergraduate at Universidade Veiga de Almeida (GPA 8.9/10) and software engineering intern at CREA-RJ. Focused on microservice architecture, relational database modeling, and enterprise systems.',
+      'Curious about technology and software development, I enjoy understanding problems and transforming them into practical solutions. My work focuses on Full Stack development, with experience in Java, Spring Boot, Vue.js, and relational databases, constantly seeking to learn new technologies and improve the way I build applications.',
     aboutParagraphs: [
       'I am a Computer Science student at Universidade Veiga de Almeida (GPA 8.9/10) and work as a software development intern at CREA-RJ, where I participate in building, maintaining, and modernizing enterprise software ecosystems.',
       'My primary passion lies in backend development, API architecture, and relational databases. In my daily routine, I work with Java, Spring Boot, PostgreSQL, Oracle, relational modeling, and containerization with Docker, while also building reactive and intuitive interfaces using Vue.js and TypeScript.',

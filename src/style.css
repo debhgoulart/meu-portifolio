@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -8,8 +10,8 @@
   }
 
   body {
-    background-color: #000000;
-    color: #fafafa;
+    background-color: #ffffff;
+    color: #09090b;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
 
@@ -19,6 +21,11 @@
   }
 
   ::selection {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: inherit;
+  }
+
+  .dark ::selection {
     background-color: rgba(255, 255, 255, 0.2);
     color: inherit;
   }
